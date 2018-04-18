@@ -58,7 +58,7 @@ inline void printD(std::unordered_map<L, int, Hasher, EqualFn>& D)
 }
 
 
-bool algorithm(const std::vector<char>& R, const std::vector<char>& B, std::unordered_map<L, int, Hasher, EqualFn>& D, int m, int n, int bStart, int k)
+int algorithm(const std::vector<char>& R, const std::vector<char>& B, std::unordered_map<L, int, Hasher, EqualFn>& D, int m, int n, int bStart, int k)
 {
     for (int d = -(k); d<=k; d++){
         D[L{d,abs(d)-2}] = -5;
@@ -82,12 +82,12 @@ bool algorithm(const std::vector<char>& R, const std::vector<char>& B, std::unor
             while(R[row]==B[row+d+bStart] && row<m) row++;
             D[L{d,e}] = row;
             if(row == m){
-                return true;
+                return e;
             }
         }
     }
 
-    return false;
+    return -1;
 }
 
 //prefix
@@ -97,11 +97,9 @@ int findAlgimentWithLowestKPREFIX(const std::vector<char>& R, const std::vector<
     int n = B.size();
     std::unordered_map<L, int, Hasher, EqualFn> D;
 
-    int k=0;
-    for(int i=0; i<m;i++){
-        bool found = algorithm(R,B,D,m,n,0,i);
-        if (found) return i;
-    }
+    int k = algorithm(R,B,D,m,n,0,m/2);
+    if (k!=-1) return k;
+    return algorithm(R,B,D,m,n,0,m);
 }
 
 int findAlgimentWithLowestKGLOBAL(const std::vector<char>& R, const std::vector<char>& B)
@@ -119,16 +117,20 @@ int main (int argc, char** argv)
     vector<std::vector<char>> R;
     vector<std::vector<char>> B;
 
-    readFastaSequences(argv[1], &R); readFastaSequences(argv[2], &B); 
+    readFastaSequences(argv[2], &R); readFastaSequences(argv[3], &B); 
 
     //printf("%lu %lu\n", R.back().size(), B.back().size());
 
     std::unordered_map<L, int, Hasher, EqualFn> D;
     int distance;
+    bool global = string(argv[1]) == "HW";
 
     clock_t start = clock();
 
-    for(int i=0; i<atoi(argv[3]); i++)
+    for(int i=0; i<atoi(argv[4]); i++)
+    if (global)
+        distance = findAlgimentWithLowestKGLOBAL(R.back(),B.back());
+    else
         distance = findAlgimentWithLowestKPREFIX(R.back(),B.back());
     printf("#0: %d\n", distance);
 
