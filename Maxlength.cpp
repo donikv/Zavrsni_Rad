@@ -15,7 +15,7 @@ unsigned int min(unsigned int i1, unsigned int i2, unsigned int i3)
     return i3;
 }
 
-void maxlength(const std::vector<nucleotide>& R, std::vector<unsigned int>& D, int m)
+void maxlength(const std::vector<char>& R, std::vector<unsigned int>& D, int m)
 {
     int row = m;
 
@@ -41,7 +41,7 @@ void printD(std::vector<unsigned int>& D, int m)
 
 int main (void)
 {
-    std::vector<nucleotide> R = {A,G,C,G,C,T,T,G,C,T,G,C};
+    std::vector<char> R = {A,G,C,G,C,T,T,G,C,T,G,C};
 
     int m = R.size();
     printf("%d\n", m);

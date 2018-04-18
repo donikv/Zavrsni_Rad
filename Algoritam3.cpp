@@ -2,6 +2,7 @@
 #include <unordered_map>
 #include <stdio.h>
 #include <string>
+#include "FastaReader.cpp"
 
 enum nucleotide : unsigned char {
     A = 0,
@@ -32,7 +33,7 @@ class Hasher
 public:
   size_t operator() (L const& k) const
   {
-    return (std::hash<std::string>()(std::to_string(k.d)+std::to_string(k.e)));
+    return k.d*100+k.e;
   }
 };
 class EqualFn
@@ -59,7 +60,7 @@ inline void printD(std::unordered_map<L, int, Hasher, EqualFn>& D)
 }
 
 
-bool algorithm(const std::vector<nucleotide>& R, const std::vector<nucleotide>& B, const std::vector<unsigned int>& MAXLENGTH,int m, int n, int k, std::unordered_map<int, bool>& ret)
+bool algorithm(const std::vector<char>& R, const std::vector<char>& B, const std::vector<unsigned int>& MAXLENGTH,int m, int n, int k, std::unordered_map<int, bool>& ret)
 {
     int j = 0;
     std::vector<Triple> Sij;
@@ -152,7 +153,7 @@ bool algorithm(const std::vector<nucleotide>& R, const std::vector<nucleotide>& 
     inst7:
     //printD(D);
     //printf("\n");
-    printf("inst7 %d %d\n", row+d+i, j);
+    //printf("inst7 %d %d\n", row+d+i, j);
         //printf("2. p,c,f %d,%d,%d\n", i+l1+d-1,0,0);
         //printf("3. p,c,f %d,%d,%d\n", i+l1+d, l1, row-l1);
         if(i+row+d<=j) continue;
@@ -173,11 +174,11 @@ bool algorithm(const std::vector<nucleotide>& R, const std::vector<nucleotide>& 
         printf("\n");
     }    
 
-    for(const auto& i : ret) printf("%d %d\n", i.first,i.second);
+    //for(const auto& i : ret) printf("%d %d\n", i.first,i.second);
     return false;
 }
 
-void maxlength(const std::vector<nucleotide>& R, std::vector<unsigned int>& D, int m)
+void maxlength(const std::vector<char>& R, std::vector<unsigned int>& D, int m)
 {
     int row = m;
 
@@ -191,21 +192,23 @@ void maxlength(const std::vector<nucleotide>& R, std::vector<unsigned int>& D, i
     }
 }
 
-int main (void)
+int main (int argc, char** argv)
 {
-    std::vector<nucleotide> R = {A,G,C,G,C,T,T,G,C,T,G,C};
-    std::vector<nucleotide> B = {A,G,T,C,G,C,C,G,C,T,G,C,T,G,C};
+    vector<std::vector<char>> R;
+    vector<std::vector<char>> B;
 
-    int m = R.size();
-    int n = B.size();
-    printf("%d %d\n", m, n);
+    readFastaSequences(argv[1], &R); readFastaSequences(argv[2], &B); 
+
+    int m = R.back().size();
+    int n = B.back().size();
+    //printf("%d %d\n", m, n);
 
     std::vector<unsigned int> MAXLENGTH((m)*(m));
-    maxlength(R,MAXLENGTH,m);
+    maxlength(R.back(),MAXLENGTH,m);
 
     std::unordered_map<int, bool> ret;
 
-    printf("%s\n", algorithm(R,B,MAXLENGTH,m,n,3,ret)==0 ? "NO" : "YES");
-    for(const auto& i : ret) printf("%d %d\n", i.first,i.second);
-    printf("\n");
+    printf("%s\n", algorithm(R.back(),B.back(),MAXLENGTH,m,n,3,ret)==0 ? "NO" : "YES");
+    for(const auto& i : ret) printf("%d %s\n", i.first,i.second ? "YES" : "NO");
+    //printf("\n");
 }
