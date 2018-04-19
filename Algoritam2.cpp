@@ -1,7 +1,8 @@
 #include <vector>
 #include <unordered_map>
 #include <stdio.h>
-#include "FastaReader.cpp"
+#include "FastaReader.hpp"
+#include "EqualityDefinition.hpp"
 
 
 # define my_sizeof(type) ((char *)(&type+1)-(char*)(&type))
@@ -58,7 +59,7 @@ inline void printD(std::unordered_map<L, int, Hasher, EqualFn>& D)
 }
 
 
-int algorithm(const std::vector<char>& R, const std::vector<char>& B, std::unordered_map<L, int, Hasher, EqualFn>& D, int m, int n, int bStart, int k, int nk)
+int algorithm(const std::vector<unsigned char>& R, const std::vector<unsigned char>& B, std::unordered_map<L, int, Hasher, EqualFn>& D, int m, int n, int bStart, int k, int nk, EqualityDefinition& equality)
 {
     for (int d = -(k); d<=k; d++){
         if(d>=-nk && d<=nk) continue;
@@ -80,7 +81,7 @@ int algorithm(const std::vector<char>& R, const std::vector<char>& B, std::unord
             }
             //printf("while entrance: %d %d %d\n", row, d, row+d+bStart);
             
-            while(R[row]==B[row+d+bStart] && row<m) row++;
+            while(equality.areEqual(R[row], B[row+d+bStart]) && row<m) row++;
             D[L{d,e}] = row;
             if(row == m){
                 return e;
@@ -92,7 +93,7 @@ int algorithm(const std::vector<char>& R, const std::vector<char>& B, std::unord
 }
 
 //prefix
-int findAlgimentWithLowestKPREFIX(const std::vector<char>& R, const std::vector<char>& B)
+int findAlgimentWithLowestKPREFIX(const std::vector<unsigned char>& R, const std::vector<unsigned char>& B, EqualityDefinition& equality)
 {
     int m = R.size();
     int n = B.size();
@@ -101,23 +102,23 @@ int findAlgimentWithLowestKPREFIX(const std::vector<char>& R, const std::vector<
     for(int i=4;i>0;i/=2)
     {  
         if(nk != 0) nk = m/nk;
-        int k = algorithm(R,B,D,m,n,0,m/i, nk);
+        int k = algorithm(R,B,D,m,n,0,m/i, nk, equality);
         if (k!=-1) return k;
         nk = i;
     }
-    int k = algorithm(R,B,D,m,n,0,m/4, 0);
+    int k = algorithm(R,B,D,m,n,0,m/4, 0, equality);
     if (k!=-1) return k;
-    return algorithm(R,B,D,m,n,0,m, m/2);
+    return algorithm(R,B,D,m,n,0,m, m/2, equality);
 }
 
-int findAlgimentWithLowestKGLOBAL(const std::vector<char>& R, const std::vector<char>& B)
+int findAlgimentWithLowestKGLOBAL(const std::vector<unsigned char>& R, const std::vector<unsigned char>& B, EqualityDefinition& equality)
 {
     int m = R.size();
     int n = B.size();
 
     std::unordered_map<L, int, Hasher, EqualFn> D;
 
-    return (findAlgimentWithLowestKPREFIX(R, B) + n - m);
+    return (findAlgimentWithLowestKPREFIX(R, B, equality) + n - m);
 }
 
 int main (int argc, char** argv)
@@ -125,9 +126,11 @@ int main (int argc, char** argv)
     vector<std::vector<char>> R;
     vector<std::vector<char>> B;
 
-    readFastaSequences(argv[2], &R); readFastaSequences(argv[3], &B); 
-
-    //printf("%lu %lu\n", R.back().size(), B.back().size());
+    readFastaSequences(argv[2], &R); readFastaSequences(argv[3], &B);
+    vector<unsigned char> Rt(R.back().size()); vector<unsigned char> Bt(B.back().size());
+    string alphabet = transformSequences(&(R.back())[0], (R.back()).size(), &(B.back())[0], (B.back()).size(), Rt, Bt);
+    
+    EqualityDefinition equality(alphabet);
 
     std::unordered_map<L, int, Hasher, EqualFn> D;
     int distance;
@@ -137,9 +140,9 @@ int main (int argc, char** argv)
 
     for(int i=0; i<atoi(argv[4]); i++)
     if (global)
-        distance = findAlgimentWithLowestKGLOBAL(R.back(),B.back());
+        distance = findAlgimentWithLowestKGLOBAL(Rt, Bt, equality);
     else
-        distance = findAlgimentWithLowestKPREFIX(R.back(),B.back());
+        distance = findAlgimentWithLowestKPREFIX(Rt, Bt, equality);
     printf("#0: %d\n", distance);
 
     clock_t finish = clock();
