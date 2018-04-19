@@ -2,6 +2,7 @@
 #include <unordered_map>
 #include <stdio.h>
 #include <string>
+#include <sstream>
 #include "FastaReader.cpp"
 
 enum nucleotide : unsigned char {
@@ -54,6 +55,8 @@ inline int max(int i1, int i2, int i3, int* num)
     return i3;
 }
 
+string cigarOutput(vector<Triple>& Sij);
+
 inline void printD(std::unordered_map<L, int, Hasher, EqualFn>& D)
 {
     for(const auto l : D) printf("L(%d, %d) = %d\n", l.first.d, l.first.e, l.second);
@@ -62,7 +65,7 @@ inline void printD(std::unordered_map<L, int, Hasher, EqualFn>& D)
 
 int algorithm(const std::vector<char>& R, const std::vector<char>& B, const std::vector<unsigned int>& MAXLENGTH,int m, int n, int kmax, std::unordered_map<int, bool>& ret)
 {
-    for(int k = 0; k<kmax; k++)
+    for(int k = 3; k<kmax; k++)
     {
     int j = 0;
     std::vector<Triple> Sij;
@@ -177,35 +180,62 @@ int algorithm(const std::vector<char>& R, const std::vector<char>& B, const std:
             printf("(%d %d %d)", seq.p, seq.c, seq.f);
         }
         printf("\n");
-        int numInsertions = 0, numDeletions = 0, numChange = 0;
-        for(int seqNum = 0; seqNum<Sij.size(); seqNum++) 
-        {
-            Triple seq = Sij[seqNum];
-            if(!seqNum) { printf("POS: %d\nCIGAR: %dM", seq.p, seq.f); }
-            else if(seq.f==0 && seq.c==0)
-            {
-                numInsertions++;
-            }
-            else
-            {
-                Triple previous = Sij[seqNum-1-numInsertions];
-                //if (numInsertions!=0 && previous.c+previous.f+numInsertions != seq.c) printf("%dI", numInsertions);
-                if (numInsertions!=0) printf("%dI", numInsertions);
-                
-                if(previous.c+previous.f == seq.c) printf("%dM", seq.f);
-                else if(previous.c+previous.f+numInsertions == seq.c && previous.p+previous.f+numInsertions == seq.p) printf("%dM", seq.c-previous.c-previous.f);
-                else printf("%dD", seq.c-previous.c-previous.f);
-                numInsertions = 0;
-            }
-            //printf("(%d %d %d)", seq.p, seq.c, seq.f);
-            
-        }
-        printf("\n");
-        if(row == m) { printf("\n"); return k; } 
+        printf("%s\n", cigarOutput(Sij).c_str());
+        //if(row == m) { printf("\n"); return k; } 
     }
     //for(const auto& i : ret) printf("%d %d\n", i.first,i.second);
     }
     return -1;
+}
+
+string cigarOutput(vector<Triple>& Sij)
+{
+    ostringstream stream;
+    int numInsertions = 0, numDeletions = 0, align = 0;
+    for(int seqNum = 0; seqNum<Sij.size(); seqNum++) 
+    {
+        Triple seq = Sij[seqNum];
+        if(!seqNum && (seq.f != 0 || seq.c != 0)) { stream << "POS: " << seq.p << endl; align = seq.f; }
+        else if(seq.f==0 && seq.c==0)
+        {
+            if(seqNum) numInsertions++;
+            else stream << "POS: " << seq.p << endl;
+            align++;
+        }
+        else
+        {
+            Triple previous = Sij[seqNum-1-numInsertions < 0 ? 0 : seqNum-1-numInsertions];
+            //if (numInsertions!=0 && previous.c+previous.f+numInsertions != seq.c) printf("%dI", numInsertions);
+            if(previous.c+previous.f+numInsertions == seq.c && previous.p+previous.f+numInsertions == seq.p)
+            {
+                numInsertions = 0;
+                align += seq.f;
+            }
+            else if (previous.p+previous.f+numInsertions == seq.p && previous.c+previous.f+numInsertions > seq.c)
+            {
+                stream << "" << align-numInsertions << "M";
+                
+                if (numInsertions) stream << "" << numInsertions << "D";
+                align = seq.f;
+                numInsertions = 0;
+            }
+            else if (previous.p+previous.f+numInsertions == seq.p && previous.c+previous.f+numInsertions < seq.c)
+            {
+                if(previous.p+previous.f == Sij[seqNum-1].p) stream << "" << align << "M";
+                else stream << "" << align-numInsertions << "M";
+                stream << "" << seq.c-(previous.c+previous.f+numInsertions) << "I";
+                align = seq.f;
+                numInsertions = 0;
+            }
+            else
+            {
+                align += seq.f;
+                numInsertions = 0;
+            }
+        }
+    }
+    if(align) stream << "" << align << "M";
+    return stream.str();
 }
 
 void maxlength(const std::vector<char>& R, std::vector<unsigned int>& D, int m)
@@ -231,7 +261,7 @@ int main (int argc, char** argv)
 
     int m = R.back().size();
     int n = B.back().size();
-    //printf("%d %d\n", m, n);
+    printf("%d %d\n", m, n);
 
     std::vector<unsigned int> MAXLENGTH((m)*(m));
     maxlength(R.back(),MAXLENGTH,m);
