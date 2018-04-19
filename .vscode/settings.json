@@ -23,6 +23,9 @@
         "tuple": "cpp",
         "type_traits": "cpp",
         "typeinfo": "cpp",
-        "utility": "cpp"
+        "utility": "cpp",
+        "cstring": "cpp",
+        "sstream": "cpp",
+        "vector": "cpp"
     }
 }

@@ -3,14 +3,9 @@
 #include <stdio.h>
 #include <string>
 #include <sstream>
-#include "FastaReader.cpp"
-
-enum nucleotide : unsigned char {
-    A = 0,
-    C = 1,
-    T = 2,
-    G = 3
-};
+#include "FastaReader.hpp"
+#include "Maxlength.hpp"
+#include "EqualityDefinition.hpp"
 
 struct L {
     int d;
@@ -22,7 +17,6 @@ struct Triple {
     unsigned int c;
     unsigned int f;
 };
-
 
 bool operator==(const L& lhs ,const L& rhs)
 {
@@ -62,128 +56,113 @@ inline void printD(std::unordered_map<L, int, Hasher, EqualFn>& D)
     for(const auto l : D) printf("L(%d, %d) = %d\n", l.first.d, l.first.e, l.second);
 }
 
-
-int algorithm(const std::vector<char>& R, const std::vector<char>& B, const std::vector<unsigned int>& MAXLENGTH,int m, int n, int kmax, std::unordered_map<int, bool>& ret)
+int algorithm(const std::vector<unsigned char>& R, const std::vector<unsigned char>& B, const std::vector<unsigned int>& MAXLENGTH,int m, int n, int kmax, EqualityDefinition& equality)
 {
     for(int k = 3; k<kmax; k++)
     {
-    int j = 0;
-    std::vector<Triple> Sij;
+        int j = 0;
+        std::vector<Triple> Sij;
 
-    for(int i=0; i<n-m+k;i++){
-        std::unordered_map<L, std::vector<Triple>, Hasher, EqualFn> lSeqMap;
-        std::unordered_map<L, int, Hasher, EqualFn> D;
+        for(int i=0; i<n-m+k;i++){
+            std::unordered_map<L, std::vector<Triple>, Hasher, EqualFn> lSeqMap;
+            std::unordered_map<L, int, Hasher, EqualFn> D;
 
-        for (int d = -(k); d<=k; d++){
-            D[L{d,abs(d)-2}] = -5;
-            if(d<0) D[L{d, -d-1}] = -d-1;
-            else D[L{d, d-1}] = -1;
-            lSeqMap[L{d,abs(d)-2}] = std::vector<Triple>();
-            lSeqMap[L{d,abs(d)-1}] = std::vector<Triple>();
-        }
+            for (int d = -(k); d<=k; d++){
+                D[L{d,abs(d)-2}] = -5;
+                if(d<0) D[L{d, -d-1}] = -d-1;
+                else D[L{d, d-1}] = -1;
+                lSeqMap[L{d,abs(d)-2}] = std::vector<Triple>();
+                lSeqMap[L{d,abs(d)-1}] = std::vector<Triple>();
+            }
 
-        unsigned int row = 0;
-        unsigned int l1;
-        int num = 0;
-        int e = 0;
-        int d = -e;
+            unsigned int row = 0;
+            unsigned int l1;
+            int num = 0;
+            int e = 0;
+            int d = -e;
 
-        for (; e<=k; e++){
-            d=-e;
-            for(; d<=e; d++){
-                if(d==-e){
-                    row = max(D[L{d,e-1}]+1, D[L{d+1,e-1}]+1, -5, &num);
-                } else if (d==e) {
-                    row = max(D[L{d,e-1}]+1, -5, D[L{d-1,e-1}], &num);
-                } else {
-                    row = max(D[L{d,e-1}]+1, D[L{d+1,e-1}]+1, D[L{d-1,e-1}], &num);
-                }
-
-                l1 = row;
-                while(row+d+i<=j){
-                    unsigned int c=0;
-                    unsigned int f=0;
-                    for(const auto& t: Sij){
-                        if(t.p+t.f>row+d+i && t.p==row+d+i){
-                            f=t.f;
-                            c=t.c;
-                            break;
-                        }
-                    }
-                    //printf("After for: c,f,row,maxlen %d,%d,%d,%d\n", c, f, row, MAXLENGTH[c*m+row]);
-
-                    if(f>=1) {
-                        if(f!=MAXLENGTH[c*m+row]) {
-                            row += std::min(f,MAXLENGTH[c*m+row]);
-                            goto inst5;
-                        } else {
-                            row += f;
-                        }
+            for (; e<=k; e++){
+                d=-e;
+                for(; d<=e; d++){
+                    if(d==-e){
+                        row = max(D[L{d,e-1}]+1, D[L{d+1,e-1}]+1, -5, &num);
+                    } else if (d==e) {
+                        row = max(D[L{d,e-1}]+1, -5, D[L{d-1,e-1}], &num);
                     } else {
-                        if(R[row]!=B[row+d+i]){
-                            goto inst5;
+                        row = max(D[L{d,e-1}]+1, D[L{d+1,e-1}]+1, D[L{d-1,e-1}], &num);
+                    }
+
+                    l1 = row;
+                    while(row+d+i<=j){
+                        unsigned int c=0;
+                        unsigned int f=0;
+                        for(const auto& t: Sij){
+                            if(t.p+t.f>row+d+i && t.p==row+d+i){
+                                f=t.f;
+                                c=t.c;
+                                break;
+                            }
+                        }
+
+                        if(f>=1) {
+                            if(f != MAXLENGTH[c*m+row]) {
+                                row += std::min(f,MAXLENGTH[c*m+row]);
+                                goto inst5;
+                            } else {
+                                row += f;
+                            }
                         } else {
-                            row++;
+                            if(!(equality.areEqual(R[row], B[row+d+i]))){
+                                goto inst5;
+                            } else {
+                                row++;
+                            }
                         }
                     }
-                }
 
-                while(R[row]==B[row+d+i] && row<m) row++;
+                    while(equality.areEqual(R[row], B[row+d+i]) && row<m) row++;
 
-            inst5:
-                D[L{d,e}] = row;
+                inst5:
+                    D[L{d,e}] = row;
 
-                L pickedL; //get L that was picked as the L that gives the maximum row
-                if(num==1) { pickedL.d = d; pickedL.e = e-1; }
-                else if(num == 2){ pickedL.d = d+1; pickedL.e = e-1; }
-                else { pickedL.d = d-1; pickedL.e = e-1; }
-                //printf("inst5 L(%d %d) = %d, Pl(%d %d), l1 = %d ",d, e, row, pickedL.d, pickedL.e, l1);
+                    L pickedL; //get L that was picked as the L that gives the maximum row
+                    if(num==1) { pickedL.d = d; pickedL.e = e-1; }
+                    else if(num == 2){ pickedL.d = d+1; pickedL.e = e-1; }
+                    else { pickedL.d = d-1; pickedL.e = e-1; }
 
-                std::vector<Triple> sequenceForCurrentL = lSeqMap[pickedL];
-                //for(const auto& seq : sequenceForCurrentL) printf("(%d %d %d)", seq.p, seq.c, seq.f);
-                //printf(" ");
-                if((pickedL.d == d-1 || pickedL.d == d) && l1+d>0) sequenceForCurrentL.push_back(Triple{i+l1+d-1,0,0});
-                if(row>l1) sequenceForCurrentL.push_back(Triple{i+l1+d, l1, row-l1});
-                lSeqMap[L{d,e}] = sequenceForCurrentL;
-                //for(const auto& seq : sequenceForCurrentL) printf("(%d %d %d)", seq.p, seq.c, seq.f);
-                //printf("\n");
+                    std::vector<Triple> sequenceForCurrentL = lSeqMap[pickedL];
 
-                if(row == m){
-                    //ret[i] = true;
-                    goto inst7;
+                    if((pickedL.d == d-1 || pickedL.d == d) && l1+d>0) sequenceForCurrentL.push_back(Triple{i+l1+d-1,0,0});
+                    if(row>l1) sequenceForCurrentL.push_back(Triple{i+l1+d, l1, row-l1});
+                    lSeqMap[L{d,e}] = sequenceForCurrentL;
+
+                    if(row == m){
+                        //ret[i] = true;
+                        goto inst7;
+                    }
                 }
             }
-        }
 
-    inst7:
-    //printD(D);
-    //printf("\n");
-    //printf("inst7 %d %d\n", row+d+i, j);
-        //printf("2. p,c,f %d,%d,%d\n", i+l1+d-1,0,0);
-        //printf("3. p,c,f %d,%d,%d\n", i+l1+d, l1, row-l1);
-        if(i+row+d<=j) continue;
-        j = i+row+d;
+        inst7:
+            if(i+row+d<=j) continue;
+            j = i+row+d;
 
-        for(int l = -k; l<=k; l++){
-            std::vector<Triple> sequenceForCurrentL = lSeqMap[L{l,k}];
-            if(sequenceForCurrentL.size()<=0) continue;
+            for(int l = -k; l<=k; l++){
+                std::vector<Triple> sequenceForCurrentL = lSeqMap[L{l,k}];
+                if(sequenceForCurrentL.size()<=0) continue;
 
-            if((sequenceForCurrentL.back().p+sequenceForCurrentL.back().f)>=j) {
-                // j = sequenceForCurrentL.back().p+sequenceForCurrentL.back().f;
-                Sij = sequenceForCurrentL;
-                break;
+                if((sequenceForCurrentL.back().p+sequenceForCurrentL.back().f)>=j) {
+                    Sij = sequenceForCurrentL;
+                    break;
+                }
             }
+            if(row == m) { printf("%s\n", cigarOutput(Sij).c_str()); return k; }
+            // for(const auto& seq : Sij) 
+            // {
+            //     printf("(%d %d %d)", seq.p, seq.c, seq.f);
+            // }
+            // printf("\n");
         }
-
-        for(const auto& seq : Sij) 
-        {
-            printf("(%d %d %d)", seq.p, seq.c, seq.f);
-        }
-        printf("\n");
-        printf("%s\n", cigarOutput(Sij).c_str());
-        //if(row == m) { printf("\n"); return k; } 
-    }
-    //for(const auto& i : ret) printf("%d %d\n", i.first,i.second);
     }
     return -1;
 }
@@ -238,39 +217,29 @@ string cigarOutput(vector<Triple>& Sij)
     return stream.str();
 }
 
-void maxlength(const std::vector<char>& R, std::vector<unsigned int>& D, int m)
-{
-    int row = m;
-
-    for(int i=0;i<m;i++){
-        for(int j=0;j<=i;j++){
-            unsigned int f = 0;
-            while(i+f<m && j+f<m && R[i+f]==R[j+f]) f++;
-            D[i*row+j] = f;
-            D[row*j+i] = f;
-        }
-    }
-}
-
 int main (int argc, char** argv)
 {
     vector<std::vector<char>> R;
     vector<std::vector<char>> B;
 
-    readFastaSequences(argv[1], &R); readFastaSequences(argv[2], &B); 
+    readFastaSequences(argv[1], &R); readFastaSequences(argv[2], &B);
+    vector<unsigned char> Rt(R.back().size()); vector<unsigned char> Bt(B.back().size());
+    string alphabet = transformSequences(&(R.back())[0], (R.back()).size(), &(B.back())[0], (B.back()).size(), Rt, Bt);
+    
+    EqualityDefinition equality(alphabet);
 
-    int m = R.back().size();
-    int n = B.back().size();
+    int m = Rt.size();
+    int n = Bt.size();
     printf("%d %d\n", m, n);
 
     std::vector<unsigned int> MAXLENGTH((m)*(m));
-    maxlength(R.back(),MAXLENGTH,m);
+    maxlength(Rt, MAXLENGTH, m, equality);
 
     std::unordered_map<int, bool> ret;
 
     clock_t start = clock();
-    for(int i=1; i<atoi(argv[3]); i++) algorithm(R.back(),B.back(),MAXLENGTH,m,n,m,ret);
-    printf("#0: %d\n", algorithm(R.back(),B.back(),MAXLENGTH,m,n,m,ret));
+    for(int i=1; i<atoi(argv[3]); i++) algorithm(Rt, Bt,MAXLENGTH,m,n,m,equality);
+    printf("#0: %d\n", algorithm(Rt, Bt,MAXLENGTH,m,n,m,equality));
     //for(const auto& i : ret) printf("%d %s\n", i.first,i.second ? "YES" : "NO");
     //printf("\n");
 
