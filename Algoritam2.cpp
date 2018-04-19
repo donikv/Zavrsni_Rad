@@ -58,16 +58,17 @@ inline void printD(std::unordered_map<L, int, Hasher, EqualFn>& D)
 }
 
 
-int algorithm(const std::vector<char>& R, const std::vector<char>& B, std::unordered_map<L, int, Hasher, EqualFn>& D, int m, int n, int bStart, int k)
+int algorithm(const std::vector<char>& R, const std::vector<char>& B, std::unordered_map<L, int, Hasher, EqualFn>& D, int m, int n, int bStart, int k, int nk)
 {
     for (int d = -(k); d<=k; d++){
+        if(d>=-nk && d<=nk) continue;
         D[L{d,abs(d)-2}] = -5;
         if(d<0) D[L{d, -d-1}] = -d-1;
         else D[L{d, d-1}] = -1;
     }
 
     unsigned int row = 0;
-    for (int e = 0; e<=k; e++){
+    for (int e = nk; e<=k; e++){
         for(int d = -e; d<=e; d++){
             //printf("%d %d \n", d, e);
             if(d==-e){
@@ -96,10 +97,17 @@ int findAlgimentWithLowestKPREFIX(const std::vector<char>& R, const std::vector<
     int m = R.size();
     int n = B.size();
     std::unordered_map<L, int, Hasher, EqualFn> D;
-
-    int k = algorithm(R,B,D,m,n,0,m/2);
+    int nk = 0;
+    for(int i=4;i>0;i/=2)
+    {  
+        if(nk != 0) nk = m/nk;
+        int k = algorithm(R,B,D,m,n,0,m/i, nk);
+        if (k!=-1) return k;
+        nk = i;
+    }
+    int k = algorithm(R,B,D,m,n,0,m/4, 0);
     if (k!=-1) return k;
-    return algorithm(R,B,D,m,n,0,m);
+    return algorithm(R,B,D,m,n,0,m, m/2);
 }
 
 int findAlgimentWithLowestKGLOBAL(const std::vector<char>& R, const std::vector<char>& B)
