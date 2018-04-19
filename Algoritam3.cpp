@@ -177,16 +177,31 @@ int algorithm(const std::vector<char>& R, const std::vector<char>& B, const std:
             printf("(%d %d %d)", seq.p, seq.c, seq.f);
         }
         printf("\n");
-        bool first = true;
-        for(const auto& seq : Sij) 
+        int numInsertions = 0, numDeletions = 0, numChange = 0;
+        for(int seqNum = 0; seqNum<Sij.size(); seqNum++) 
         {
-            if(first) { first = false; printf("POS: %d\nCIGAR: %d\n", seq.p, seq.f); }
-            //else if(seq.f==0)
-            printf("(%d %d %d)", seq.p, seq.c, seq.f);
+            Triple seq = Sij[seqNum];
+            if(!seqNum) { printf("POS: %d\nCIGAR: %dM", seq.p, seq.f); }
+            else if(seq.f==0 && seq.c==0)
+            {
+                numInsertions++;
+            }
+            else
+            {
+                Triple previous = Sij[seqNum-1-numInsertions];
+                //if (numInsertions!=0 && previous.c+previous.f+numInsertions != seq.c) printf("%dI", numInsertions);
+                if (numInsertions!=0) printf("%dI", numInsertions);
+                
+                if(previous.c+previous.f == seq.c) printf("%dM", seq.f);
+                else if(previous.c+previous.f+numInsertions == seq.c && previous.p+previous.f+numInsertions == seq.p) printf("%dM", seq.c-previous.c-previous.f);
+                else printf("%dD", seq.c-previous.c-previous.f);
+                numInsertions = 0;
+            }
+            //printf("(%d %d %d)", seq.p, seq.c, seq.f);
             
         }
         printf("\n");
-        //if(row == m) { printf("\n"); return k; } 
+        if(row == m) { printf("\n"); return k; } 
     }
     //for(const auto& i : ret) printf("%d %d\n", i.first,i.second);
     }
