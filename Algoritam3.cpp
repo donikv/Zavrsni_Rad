@@ -172,8 +172,21 @@ int algorithm(const std::vector<char>& R, const std::vector<char>& B, const std:
             }
         }
 
-        for(const auto& seq : Sij) printf("(%d %d %d)", seq.p, seq.c, seq.f);
-        if(row == m) { printf("\n"); return k; } 
+        for(const auto& seq : Sij) 
+        {
+            printf("(%d %d %d)", seq.p, seq.c, seq.f);
+        }
+        printf("\n");
+        bool first = true;
+        for(const auto& seq : Sij) 
+        {
+            if(first) { first = false; printf("POS: %d\nCIGAR: %d\n", seq.p, seq.f); }
+            //else if(seq.f==0)
+            printf("(%d %d %d)", seq.p, seq.c, seq.f);
+            
+        }
+        printf("\n");
+        //if(row == m) { printf("\n"); return k; } 
     }
     //for(const auto& i : ret) printf("%d %d\n", i.first,i.second);
     }
