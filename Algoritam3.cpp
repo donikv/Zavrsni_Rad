@@ -60,8 +60,10 @@ inline void printD(std::unordered_map<L, int, Hasher, EqualFn>& D)
 }
 
 
-bool algorithm(const std::vector<char>& R, const std::vector<char>& B, const std::vector<unsigned int>& MAXLENGTH,int m, int n, int k, std::unordered_map<int, bool>& ret)
+int algorithm(const std::vector<char>& R, const std::vector<char>& B, const std::vector<unsigned int>& MAXLENGTH,int m, int n, int kmax, std::unordered_map<int, bool>& ret)
 {
+    for(int k = 0; k<kmax; k++)
+    {
     int j = 0;
     std::vector<Triple> Sij;
 
@@ -144,7 +146,7 @@ bool algorithm(const std::vector<char>& R, const std::vector<char>& B, const std
                 //printf("\n");
 
                 if(row == m){
-                    ret[i] = true;
+                    //ret[i] = true;
                     goto inst7;
                 }
             }
@@ -171,11 +173,11 @@ bool algorithm(const std::vector<char>& R, const std::vector<char>& B, const std
         }
 
         for(const auto& seq : Sij) printf("(%d %d %d)", seq.p, seq.c, seq.f);
-        printf("\n");
-    }    
-
+        if(row == m) { printf("\n"); return k; } 
+    }
     //for(const auto& i : ret) printf("%d %d\n", i.first,i.second);
-    return false;
+    }
+    return -1;
 }
 
 void maxlength(const std::vector<char>& R, std::vector<unsigned int>& D, int m)
@@ -208,7 +210,13 @@ int main (int argc, char** argv)
 
     std::unordered_map<int, bool> ret;
 
-    printf("%s\n", algorithm(R.back(),B.back(),MAXLENGTH,m,n,3,ret)==0 ? "NO" : "YES");
-    for(const auto& i : ret) printf("%d %s\n", i.first,i.second ? "YES" : "NO");
+    clock_t start = clock();
+    for(int i=1; i<atoi(argv[3]); i++) algorithm(R.back(),B.back(),MAXLENGTH,m,n,m,ret);
+    printf("#0: %d\n", algorithm(R.back(),B.back(),MAXLENGTH,m,n,m,ret));
+    //for(const auto& i : ret) printf("%d %s\n", i.first,i.second ? "YES" : "NO");
     //printf("\n");
+
+    clock_t finish = clock();
+    double cpuTime = ((double)(finish-start))/CLOCKS_PER_SEC;
+    printf("Cpu time of searching: %lf\n", cpuTime);
 }
