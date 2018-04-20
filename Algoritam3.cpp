@@ -12,6 +12,11 @@ struct L {
     int e;
 };
 
+struct Cigar {
+    char type;
+    int num;
+};
+
 struct Triple {
     unsigned int p;
     unsigned int c;
@@ -49,21 +54,21 @@ inline int max(int i1, int i2, int i3, int* num)
     return i3;
 }
 
-string cigarOutput(vector<Triple>& Sij);
+string standardCigarOutput(vector<Triple>& Sij);
 
 inline void printD(std::unordered_map<L, int, Hasher, EqualFn>& D)
 {
     for(const auto l : D) printf("L(%d, %d) = %d\n", l.first.d, l.first.e, l.second);
 }
 
-int algorithm(const std::vector<unsigned char>& R, const std::vector<unsigned char>& B, const std::vector<unsigned int>& MAXLENGTH,int m, int n, int kmax, EqualityDefinition& equality)
+int algorithm(const std::vector<unsigned char>& R, const std::vector<unsigned char>& B, const std::vector<unsigned int>& MAXLENGTH,int m, int n, int kmin, int kmax, EqualityDefinition& equality, bool prefix)
 {
-    for(int k = 3; k<kmax; k++)
+    for(int k = kmin; k<=kmax; k++)
     {
         int j = 0;
         std::vector<Triple> Sij;
 
-        for(int i=0; i<n-m+k;i++){
+        for(int i=0; i<(prefix ? 1 : n-m+k);i++){
             std::unordered_map<L, std::vector<Triple>, Hasher, EqualFn> lSeqMap;
             std::unordered_map<L, int, Hasher, EqualFn> D;
 
@@ -156,7 +161,7 @@ int algorithm(const std::vector<unsigned char>& R, const std::vector<unsigned ch
                     break;
                 }
             }
-            if(row == m) { printf("%s\n", cigarOutput(Sij).c_str()); return k; }
+            if(row == m) { printf("%s\n", standardCigarOutput(Sij).c_str()); return k; }
             // for(const auto& seq : Sij) 
             // {
             //     printf("(%d %d %d)", seq.p, seq.c, seq.f);
@@ -167,7 +172,7 @@ int algorithm(const std::vector<unsigned char>& R, const std::vector<unsigned ch
     return -1;
 }
 
-string cigarOutput(vector<Triple>& Sij)
+string standardCigarOutput(vector<Triple>& Sij)
 {
     ostringstream stream;
     int numInsertions = 0, numDeletions = 0, align = 0;
@@ -238,8 +243,8 @@ int main (int argc, char** argv)
     std::unordered_map<int, bool> ret;
 
     clock_t start = clock();
-    for(int i=1; i<atoi(argv[3]); i++) algorithm(Rt, Bt,MAXLENGTH,m,n,m,equality);
-    printf("#0: %d\n", algorithm(Rt, Bt,MAXLENGTH,m,n,m,equality));
+    for(int i=1; i<atoi(argv[3]); i++) algorithm(Rt, Bt,MAXLENGTH,m,n,0,m,equality, true);
+    printf("#0: %d\n", algorithm(Rt, Bt,MAXLENGTH,m,n,0,m,equality, true));
     //for(const auto& i : ret) printf("%d %s\n", i.first,i.second ? "YES" : "NO");
     //printf("\n");
 
