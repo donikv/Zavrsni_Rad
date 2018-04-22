@@ -55,6 +55,7 @@ inline int max(int i1, int i2, int i3, int* num)
 }
 
 string standardCigarOutput(vector<Triple>& Sij);
+string extendedCigarOutput(vector<Triple>& Sij);
 
 inline void printD(std::unordered_map<L, int, Hasher, EqualFn>& D)
 {
@@ -161,7 +162,7 @@ int algorithm(const std::vector<unsigned char>& R, const std::vector<unsigned ch
                     break;
                 }
             }
-            if(row == m) { printf("%s\n", standardCigarOutput(Sij).c_str()); return k; }
+            if(row == m) { printf("%s\n", extendedCigarOutput(Sij).c_str()); return k; }
             // for(const auto& seq : Sij) 
             // {
             //     printf("(%d %d %d)", seq.p, seq.c, seq.f);
@@ -219,6 +220,59 @@ string standardCigarOutput(vector<Triple>& Sij)
         }
     }
     if(align) stream << "" << align << "M";
+    return stream.str();
+}
+
+string extendedCigarOutput(vector<Triple>& Sij)
+{
+    ostringstream stream;
+    int numInsertions = 0, numDeletions = 0, align = 0;
+    for(int seqNum = 0; seqNum<Sij.size(); seqNum++) 
+    {
+        Triple seq = Sij[seqNum];
+        if(!seqNum && (seq.f != 0 || seq.c != 0)) { stream << "POS: " << seq.p << endl << "CIGAR: "; align = seq.f; }
+        else if(seq.f==0 && seq.c==0)
+        {
+            if(seqNum) numInsertions++;
+            else stream << "POS: " << seq.p << endl;
+            align++;
+        }
+        else
+        {
+            Triple previous = Sij[seqNum-1-numInsertions < 0 ? 0 : seqNum-1-numInsertions];
+            //if (numInsertions!=0 && previous.c+previous.f+numInsertions != seq.c) printf("%dI", numInsertions);
+            if(previous.c+previous.f+numInsertions == seq.c && previous.p+previous.f+numInsertions == seq.p)
+            {
+                numInsertions = 0;
+                align += seq.f;
+            }
+            else if (previous.p+previous.f+numInsertions == seq.p && previous.c+previous.f+numInsertions > seq.c)
+            {
+                stream << "" << align-numInsertions << "=";
+                
+                if (numInsertions) stream << "" << numInsertions << "D";
+                align = seq.f;
+                numInsertions = 0;
+            }
+            else if (previous.p+previous.f+numInsertions == seq.p && previous.c+previous.f+numInsertions < seq.c)
+            {
+                if(previous.p+previous.f == Sij[seqNum-1].p) stream << "" << align << "=";
+                else stream << "" << align-numInsertions << "=";
+                stream << "" << seq.c-(previous.c+previous.f+numInsertions) << "I";
+                align = seq.f;
+                numInsertions = 0;
+            }
+            else
+            {
+                if(previous.p+previous.f == Sij[seqNum-1].p) stream << "" << align << "=";
+                else stream << "" << align-numInsertions << "=";
+                stream << "" << seq.c-(previous.c+previous.f+numInsertions) << "X";
+                align = seq.f;
+                numInsertions = 0;
+            }
+        }
+    }
+    if(align) stream << "" << align << "=";
     return stream.str();
 }
 
