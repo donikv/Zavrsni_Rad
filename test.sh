@@ -1,11 +1,10 @@
 #!/bin/bash
-
-./build.sh || exit 1
+./build.sh
 echo "-------------------PREFIX-------------------"
-./build/test SHW ./test_data/test_pattern.fasta ./test_data/test_text.fasta 1
+./build/bin/main SHW ./test_data/test_pattern.fasta ./test_data/test_text.fasta 1
 echo
 echo "-------------------GLOBAL-------------------"
-./build/test HW ./test_data/test_pattern.fasta ./test_data/test_text.fasta 1
+./build/bin/main HW ./test_data/test_pattern.fasta ./test_data/test_text.fasta 1
 echo
 echo "-------------------INFIX--------------------"
-./build/test NW ./test_data/test_pattern.fasta ./test_data/test_text.fasta 1  
+./build/bin/main NW ./test_data/test_pattern.fasta ./test_data/test_text.fasta 1  
