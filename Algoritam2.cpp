@@ -21,6 +21,10 @@ struct L {
     int e;
 };
 
+struct Cigar {
+    char type;
+    unsigned int num;
+};
 
 bool operator==(const L& lhs ,const L& rhs)
 {
@@ -45,11 +49,12 @@ public:
   }
 };
 
-inline int max(int i1, int i2, int i3)
+inline int max(int i1, int i2, int i3, int* num)
 {
     //printf("%d,%d,%d\n", i1,i2,i3);
-    if(i1>=i2 && i1>=i3) return i1;
-    if(i2>=i1 && i2>=i3) return i2;
+    if(i1>=i2 && i1>=i3) {*num = 1; return i1;}
+    if(i2>=i1 && i2>=i3) {*num = 2; return i2;}
+    *num = 3;
     return i3;
 }
 
@@ -61,6 +66,8 @@ inline void printD(std::unordered_map<L, int, Hasher, EqualFn>& D)
 
 int algorithm(const std::vector<unsigned char>& R, const std::vector<unsigned char>& B, std::unordered_map<L, int, Hasher, EqualFn>& D, int m, int n, int bStart, int k, int nk, EqualityDefinition& equality)
 {
+    //bool standardCigar = false;  
+
     for (int d = -(k); d<=k; d++){
         if(d>=-nk && d<=nk) continue;
         D[L{d,abs(d)-2}] = -5;
@@ -69,21 +76,48 @@ int algorithm(const std::vector<unsigned char>& R, const std::vector<unsigned ch
     }
 
     unsigned int row = 0;
+    int num = 0;
     for (int e = nk; e<=k; e++){
+        //std::vector<Cigar> cigarOutput;
         for(int d = -e; d<=e; d++){
             //printf("%d %d \n", d, e);
             if(d==-e){
-                row = max(D[L{d,e-1}]+1, D[L{d+1,e-1}]+1, -5);
+                row = max(D[L{d,e-1}]+1, D[L{d+1,e-1}]+1, -5, &num);
             } else if (d==e) {
-                row = max(D[L{d,e-1}]+1, -5, D[L{d-1,e-1}]);
+                row = max(D[L{d,e-1}]+1, -5, D[L{d-1,e-1}], &num);
             } else {
-                row = max(D[L{d,e-1}]+1, D[L{d+1,e-1}]+1, D[L{d-1,e-1}]);
+                row = max(D[L{d,e-1}]+1, D[L{d+1,e-1}]+1, D[L{d-1,e-1}], &num);
             }
             //printf("while entrance: %d %d %d\n", row, d, row+d+bStart);
-            
+            // if (num==1) {
+            //     if(standardCigar){
+            //         if(cigarOutput.size() && cigarOutput.back().type == 'M') cigarOutput.back().num++;
+            //         else cigarOutput.push_back(Cigar{'M', 1});
+            //     } else {
+            //         if(cigarOutput.size() && cigarOutput.back().type == 'X') cigarOutput.back().num++;
+            //         else cigarOutput.push_back(Cigar{'X', 1});
+            //     }
+            // } else if (num==2) {
+            //     if(cigarOutput.size() && cigarOutput.back().type == 'D') cigarOutput.back().num++;
+            //     else cigarOutput.push_back(Cigar{'D', 1});
+            // } else {
+            //     if(cigarOutput.size() && cigarOutput.back().type == 'I') cigarOutput.back().num++;
+            //     else cigarOutput.push_back(Cigar{'I', 1});
+            // }
+            // unsigned int prevRow = row;
+
             while(equality.areEqual(R[row], B[row+d+bStart]) && row<m) row++;
             D[L{d,e}] = row;
+
+            // if(row-prevRow!=0) { 
+            //     if(cigarOutput.size() && cigarOutput.back().type == 'M') cigarOutput.back().num+=(row-prevRow);
+            //     else cigarOutput.push_back(Cigar{'M', row-prevRow});
+            // } 
+
             if(row == m){
+                // printf("POS: 0\nCIGAR: ");
+                // for (auto& c : cigarOutput) printf("%d%c", c.num, c.type);
+                printf("\n");
                 return e;
             }
         }
