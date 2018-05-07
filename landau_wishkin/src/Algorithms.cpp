@@ -27,7 +27,6 @@ int algorithm2(const std::vector<unsigned char>& R, const std::vector<unsigned c
             D[L{d,e}] = row;
 
             if(row == m){
-                printf("\n");
                 return e;
             }
         }
@@ -146,13 +145,39 @@ int findAlgimentWithLowestKPREFIX(const std::vector<unsigned char>& R, const std
     int n = B.size();
     std::unordered_map<L, int, Hasher, EqualFn> D;
     int nk = 0;
+
+    // if (cigar) {
+    //     std::vector<unsigned int> MAXLENGTH((m)*(m));
+    //     maxlength(R, MAXLENGTH, m, equality);
+    //     for(int k = 0; k<=m; k++)
+    //     {
+    //         int ret = algorithm3(R, B, MAXLENGTH, m, n, k, equality, true, cigar, cigarOutput);
+    //         if(ret != -1) return ret;
+    //     }
+    // } else {
+    //     for(int i=4;i>0;i/=2)
+    //     {  
+    //         if(nk != 0) nk = m/nk;
+    //         int k = algorithm2(R,B,D,m,n,0,m/i, nk, equality);
+    //         if (k!=-1) { if(cigar) algorithm3(R, B, MAXLENGTH, m, n, k, equality, true, cigar, cigarOutput); return k; } 
+    //         nk = i;
+    //     }
+    // }
     for(int i=4;i>0;i/=2)
     {  
         if(nk != 0) nk = m/nk;
         int k = algorithm2(R,B,D,m,n,0,m/i, nk, equality);
-        if (k!=-1) return k;
+        if (k!=-1) { 
+            if(cigar) {
+                std::vector<unsigned int> MAXLENGTH((m)*(m));
+                maxlength(R, MAXLENGTH, m, equality);
+                k = algorithm3(R, B, MAXLENGTH, m, n, k, equality, true, cigar, cigarOutput);
+            }  
+            return k; 
+        } 
         nk = i;
     }
+    
     return -1;
 }
 
@@ -160,8 +185,13 @@ int findAlgimentWithLowestKGLOBAL(const std::vector<unsigned char>& R, const std
 {
     int m = R.size();
     int n = B.size();
-
-    return (findAlgimentWithLowestKPREFIX(R, B, equality) + n - m);
+    std::unordered_map<L, int, Hasher, EqualFn> D;
+    for(int i=0;i<m;i++)
+    {  
+        int k = algorithm2(R,B,D,m,n,0,i, i, equality);
+        if (k!=-1) return k + abs(n-m);
+    }
+    return -1;
 }
 
 int findAlgimentWithLowestKINFIX(const std::vector<unsigned char>& R, const std::vector<unsigned char>& B, EqualityDefinition& equality, bool cigar, string& cigarOutput)
@@ -169,24 +199,25 @@ int findAlgimentWithLowestKINFIX(const std::vector<unsigned char>& R, const std:
     int m = R.size();
     int n = B.size();
 
+    // shared_ptr<thread_pool::ThreadPool> thread_pool = thread_pool::createThreadPool();
+    // vector<future<int>> thread_futures;
     std::vector<unsigned int> MAXLENGTH((m)*(m));
     maxlength(R, MAXLENGTH, m, equality);
 
-    shared_ptr<thread_pool::ThreadPool> thread_pool = thread_pool::createThreadPool();
-    vector<future<int>> thread_futures;
-
     for(int k = 0; k<=m; k++)
     {
-        thread_futures.emplace_back(thread_pool->submit_task(algorithm3, R, B, MAXLENGTH, m, n, k, equality, true, cigar, cigarOutput));
-    }
-
-    for(auto& fut : thread_futures)
-    {
-        fut.wait();
-        int ret = fut.get();
-
+        //thread_futures.emplace_back(thread_pool->submit_task(algorithm3, R, B, MAXLENGTH, m, n, k, equality, true, cigar, cigarOutput));
+        int ret = algorithm3(R, B, MAXLENGTH, m, n, k, equality, false, cigar, cigarOutput);
         if(ret != -1) return ret;
     }
+
+    // for(auto& fut : thread_futures)
+    // {
+    //     fut.wait();
+    //     int ret = fut.get();
+
+    //     if(ret != -1) return ret;
+    // }
 
     return -1;
 }

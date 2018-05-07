@@ -23,6 +23,7 @@ int main (int argc, char** argv)
     int distance;
     bool global = string(argv[1]) == "NW";
     bool infix = string(argv[1]) == "HW";
+    string cigar;
 
     clock_t start = clock();
 
@@ -32,9 +33,10 @@ int main (int argc, char** argv)
     else if (infix)
         distance = findAlgimentWithLowestKINFIX(Rt, Bt, equality);
     else
-        distance = findAlgimentWithLowestKPREFIX(Rt, Bt, equality);
+        distance = findAlgimentWithLowestKPREFIX(Rt, Bt, equality, argc==6 ? atoi(argv[5]) : false, cigar);
     }
     printf("#0: %d\n", distance);
+    if(argc==6 ? atoi(argv[5]) : false) printf("%s\n", cigar.c_str());
 
     clock_t finish = clock();
     double cpuTime = ((double)(finish-start))/CLOCKS_PER_SEC;
