@@ -21,18 +21,19 @@ int main (int argc, char** argv)
 
     std::unordered_map<L, int, Hasher, EqualFn> D;
     int distance;
-    bool global = string(argv[1]) == "HW";
-    bool infix = string(argv[1]) == "NW";
+    bool global = string(argv[1]) == "NW";
+    bool infix = string(argv[1]) == "HW";
 
     clock_t start = clock();
 
-    for(int i=0; i<atoi(argv[4]); i++)
+    for(int i=0; i<atoi(argv[4]); i++){
     if (global)
         distance = findAlgimentWithLowestKGLOBAL(Rt, Bt, equality);
     else if (infix)
         distance = findAlgimentWithLowestKINFIX(Rt, Bt, equality);
     else
         distance = findAlgimentWithLowestKPREFIX(Rt, Bt, equality);
+    }
     printf("#0: %d\n", distance);
 
     clock_t finish = clock();

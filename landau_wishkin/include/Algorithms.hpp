@@ -7,6 +7,7 @@
 #include <sstream>
 #include "Maxlength.hpp"
 #include "EqualityDefinition.hpp"
+#include "thread_pool.hpp"
 
 using namespace std;
 
@@ -52,7 +53,7 @@ inline int max(int i1, int i2, int i3, int* num);
 string standardCigarOutput(vector<Triple>& Sij);
 string extendedCigarOutput(vector<Triple>& Sij);
 
-int algorithm3(const std::vector<unsigned char>& R, const std::vector<unsigned char>& B, const std::vector<unsigned int>& MAXLENGTH,int m, int n, int kmin, int kmax, EqualityDefinition& equality, bool prefix, bool cigar=false, string& cigarOutput = nullString);
+int algorithm3(const std::vector<unsigned char>& R, const std::vector<unsigned char>& B, const std::vector<unsigned int>& MAXLENGTH,int m, int n, int k, EqualityDefinition& equality, bool prefix, bool cigar=false, string& cigarOutput = nullString);
 
 int algorithm2(const std::vector<unsigned char>& R, const std::vector<unsigned char>& B, std::unordered_map<L, int, Hasher, EqualFn>& D, int m, int n, int bStart, int k, int nk, EqualityDefinition& equality);
 
