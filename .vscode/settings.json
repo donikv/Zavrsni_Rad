@@ -26,6 +26,8 @@
         "utility": "cpp",
         "cstring": "cpp",
         "sstream": "cpp",
-        "vector": "cpp"
+        "vector": "cpp",
+        "functional": "cpp",
+        "future": "cpp"
     }
 }

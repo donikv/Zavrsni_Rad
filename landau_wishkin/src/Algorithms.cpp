@@ -146,23 +146,6 @@ int findAlgimentWithLowestKPREFIX(const std::vector<unsigned char>& R, const std
     std::unordered_map<L, int, Hasher, EqualFn> D;
     int nk = 0;
 
-    // if (cigar) {
-    //     std::vector<unsigned int> MAXLENGTH((m)*(m));
-    //     maxlength(R, MAXLENGTH, m, equality);
-    //     for(int k = 0; k<=m; k++)
-    //     {
-    //         int ret = algorithm3(R, B, MAXLENGTH, m, n, k, equality, true, cigar, cigarOutput);
-    //         if(ret != -1) return ret;
-    //     }
-    // } else {
-    //     for(int i=4;i>0;i/=2)
-    //     {  
-    //         if(nk != 0) nk = m/nk;
-    //         int k = algorithm2(R,B,D,m,n,0,m/i, nk, equality);
-    //         if (k!=-1) { if(cigar) algorithm3(R, B, MAXLENGTH, m, n, k, equality, true, cigar, cigarOutput); return k; } 
-    //         nk = i;
-    //     }
-    // }
     for(int i=4;i>0;i/=2)
     {  
         if(nk != 0) nk = m/nk;
