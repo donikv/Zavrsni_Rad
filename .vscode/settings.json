@@ -28,6 +28,7 @@
         "sstream": "cpp",
         "vector": "cpp",
         "functional": "cpp",
-        "future": "cpp"
+        "future": "cpp",
+        "ratio": "cpp"
     }
 }

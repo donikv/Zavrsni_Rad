@@ -1,6 +1,6 @@
 #include "Algorithms.hpp"
 
-int algorithm2(const std::vector<unsigned char>& R, const std::vector<unsigned char>& B, std::unordered_map<L, int, Hasher, EqualFn>& D, int m, int n, int bStart, int k, int nk, EqualityDefinition& equality)
+int algorithm2(const std::vector<unsigned char>& R, const std::vector<unsigned char>& B, std::unordered_map<L, int, Hasher, EqualFn>& D, int m, int n, int bStart, int k, int nk, EqualityDefinition& equality, bool global, vector<char> cigarVector)
 {
     //bool standardCigar = false;  
 
@@ -23,11 +23,15 @@ int algorithm2(const std::vector<unsigned char>& R, const std::vector<unsigned c
                 row = max(D[L{d,e-1}]+1, D[L{d+1,e-1}]+1, D[L{d-1,e-1}], &num);
             }
 
-            while(equality.areEqual(R[row], B[row+d+bStart]) && row<m) row++;
+            while(equality.areEqual(R[row], B[row+d+bStart]) && row<m) {
+                row++;
+            }
             D[L{d,e}] = row;
 
             if(row == m){
-                return e;
+                return global ? e+abs(n-m)+abs(d) : e;
+            } else if (global && row+d == n) {
+                return global ? e+abs(n-m)+abs(d) : e;
             }
         }
     }
@@ -145,6 +149,7 @@ int findAlgimentWithLowestKPREFIX(const std::vector<unsigned char>& R, const std
     int n = B.size();
     std::unordered_map<L, int, Hasher, EqualFn> D;
     int nk = 0;
+    vector<char> cigarVector;
 
     for(int i=4;i>0;i/=2)
     {  
@@ -169,11 +174,23 @@ int findAlgimentWithLowestKGLOBAL(const std::vector<unsigned char>& R, const std
     int m = R.size();
     int n = B.size();
     std::unordered_map<L, int, Hasher, EqualFn> D;
-    for(int i=0;i<m;i++)
+    int nk = 0;
+
+    for(int i=4;i>0;i/=2)
     {  
-        int k = algorithm2(R,B,D,m,n,0,i, i, equality);
-        if (k!=-1) return k + abs(n-m);
+        if(nk != 0) nk = m/nk;
+        int k = algorithm2(R,B,D,m,n,0,m/i, nk, equality, true);
+        if (k!=-1) { 
+            if(cigar) {
+                std::vector<unsigned int> MAXLENGTH((m)*(m));
+                maxlength(R, MAXLENGTH, m, equality);
+                algorithm3(R, B, MAXLENGTH, m, n, k, equality, true, cigar, cigarOutput);
+            }  
+            return k; 
+        } 
+        nk = i;
     }
+    
     return -1;
 }
 

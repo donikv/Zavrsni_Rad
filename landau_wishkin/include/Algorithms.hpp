@@ -44,7 +44,7 @@ class EqualFn
 public:
   bool operator() (L const& t1, L const& t2) const
   {
-    return t1==t2;
+    return t1.d==t2.d && t1.e==t2.e;
   }
 };
 
@@ -55,7 +55,7 @@ string extendedCigarOutput(vector<Triple>& Sij);
 
 int algorithm3(const std::vector<unsigned char>& R, const std::vector<unsigned char>& B, const std::vector<unsigned int>& MAXLENGTH,int m, int n, int k, EqualityDefinition& equality, bool prefix, bool cigar=false, string& cigarOutput = nullString);
 
-int algorithm2(const std::vector<unsigned char>& R, const std::vector<unsigned char>& B, std::unordered_map<L, int, Hasher, EqualFn>& D, int m, int n, int bStart, int k, int nk, EqualityDefinition& equality);
+int algorithm2(const std::vector<unsigned char>& R, const std::vector<unsigned char>& B, std::unordered_map<L, int, Hasher, EqualFn>& D, int m, int n, int bStart, int k, int nk, EqualityDefinition& equality, bool global = false);
 
 //prefix
 int findAlgimentWithLowestKPREFIX(const std::vector<unsigned char>& R, const std::vector<unsigned char>& B, EqualityDefinition& equality, bool cigar=false, string& cigarOutput = nullString);
