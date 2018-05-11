@@ -29,6 +29,7 @@
         "vector": "cpp",
         "functional": "cpp",
         "future": "cpp",
-        "ratio": "cpp"
+        "ratio": "cpp",
+        "memory": "cpp"
     }
 }

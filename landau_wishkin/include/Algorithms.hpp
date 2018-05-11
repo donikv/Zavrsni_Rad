@@ -12,6 +12,7 @@
 using namespace std;
 
 static string nullString = "NULL";
+static vector<char> nullVector;
 
 struct L {
     int d;
@@ -53,9 +54,12 @@ inline int max(int i1, int i2, int i3, int* num);
 string standardCigarOutput(vector<Triple>& Sij);
 string extendedCigarOutput(vector<Triple>& Sij);
 
+string standardCigarOutput(vector<char>& cigarVector);
+string extendedCigarOutput(vector<char>& cigarVector);
+
 int algorithm3(const std::vector<unsigned char>& R, const std::vector<unsigned char>& B, const std::vector<unsigned int>& MAXLENGTH,int m, int n, int k, EqualityDefinition& equality, bool prefix, bool cigar=false, string& cigarOutput = nullString);
 
-int algorithm2(const std::vector<unsigned char>& R, const std::vector<unsigned char>& B, std::unordered_map<L, int, Hasher, EqualFn>& D, int m, int n, int bStart, int k, int nk, EqualityDefinition& equality, bool global = false);
+int algorithm2(const std::vector<unsigned char>& R, const std::vector<unsigned char>& B, std::unordered_map<L, int, Hasher, EqualFn>& D, int m, int n, int bStart, int k, int nk, EqualityDefinition& equality, bool global = false, bool cigar = false,  vector<char>& cigarVector = nullVector);
 
 //prefix
 int findAlgimentWithLowestKPREFIX(const std::vector<unsigned char>& R, const std::vector<unsigned char>& B, EqualityDefinition& equality, bool cigar=false, string& cigarOutput = nullString);

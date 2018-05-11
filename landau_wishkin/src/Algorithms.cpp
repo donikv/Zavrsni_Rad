@@ -1,14 +1,21 @@
 #include "Algorithms.hpp"
 
-int algorithm2(const std::vector<unsigned char>& R, const std::vector<unsigned char>& B, std::unordered_map<L, int, Hasher, EqualFn>& D, int m, int n, int bStart, int k, int nk, EqualityDefinition& equality, bool global, vector<char> cigarVector)
+int algorithm2(const std::vector<unsigned char>& R, const std::vector<unsigned char>& B, std::unordered_map<L, int, Hasher, EqualFn>& D, int m, int n, int bStart, int k, int nk, EqualityDefinition& equality, bool global, bool cigar, vector<char>& cigarVector)
 {
-    //bool standardCigar = false;  
+    //bool standardCigar = false;
+    unordered_map<L,vector<char>, Hasher, EqualFn> cigarDict;
+    vector<char> cv;
 
     for (int d = -(k); d<=k; d++){
-        if(d>=-nk && d<=nk) continue;
+        if(d>=-nk && d<=nk && d!=0) continue;
         D[L{d,abs(d)-2}] = -5;
         if(d<0) D[L{d, -d-1}] = -d-1;
         else D[L{d, d-1}] = -1;
+
+        if(cigar){
+            cigarDict[L{d,abs(d)-1}] = cv;
+            cigarDict[L{d,abs(d)-1}] = cv;
+        }
     }
 
     unsigned int row = 0;
@@ -22,13 +29,35 @@ int algorithm2(const std::vector<unsigned char>& R, const std::vector<unsigned c
             } else {
                 row = max(D[L{d,e-1}]+1, D[L{d+1,e-1}]+1, D[L{d-1,e-1}], &num);
             }
+            
+            
+            if(cigar){
+                switch (num){
+                    case 1:
+                        cv = cigarDict[L{d,e-1}];
+                        if(e!=0)
+                            cv.push_back('I');
+                        break;
+                    case 2:
+                        cv = cigarDict[L{d+1,e-1}];
+                        cv.push_back('M');
+                        break;
+                    case 3:
+                        cv = cigarDict[L{d-1,e-1}];
+                        cv.push_back('D');
+                        break;
+                }
+            }
 
             while(equality.areEqual(R[row], B[row+d+bStart]) && row<m) {
+                if (cigar) cv.push_back('=');
                 row++;
             }
             D[L{d,e}] = row;
+            if (cigar) cigarDict[L{d,e}] = cv;
 
             if(row == m){
+                if (cigar) cigarVector = cv;
                 return global ? e+abs(n-m)+abs(d) : e;
             } else if (global && row+d == n) {
                 return global ? e+abs(n-m)+abs(d) : e;
@@ -154,12 +183,14 @@ int findAlgimentWithLowestKPREFIX(const std::vector<unsigned char>& R, const std
     for(int i=4;i>0;i/=2)
     {  
         if(nk != 0) nk = m/nk;
-        int k = algorithm2(R,B,D,m,n,0,m/i, nk, equality);
-        if (k!=-1) { 
+        int k = algorithm2(R,B,D,m,n,0,m, 0, equality, false, true, cigarVector);
+        if (k!=-1) {
+            for (auto c: cigarVector) {
+                printf("%c", c);
+            }
+            printf("\n");
             if(cigar) {
-                std::vector<unsigned int> MAXLENGTH((m)*(m));
-                maxlength(R, MAXLENGTH, m, equality);
-                k = algorithm3(R, B, MAXLENGTH, m, n, k, equality, true, cigar, cigarOutput);
+                cigarOutput = standardCigarOutput(cigarVector);
             }  
             return k; 
         } 
@@ -175,6 +206,7 @@ int findAlgimentWithLowestKGLOBAL(const std::vector<unsigned char>& R, const std
     int n = B.size();
     std::unordered_map<L, int, Hasher, EqualFn> D;
     int nk = 0;
+    vector<char> cigarVector;
 
     for(int i=4;i>0;i/=2)
     {  
@@ -222,7 +254,47 @@ int findAlgimentWithLowestKINFIX(const std::vector<unsigned char>& R, const std:
     return -1;
 }
 
+string standardCigarOutput(vector<char>& cigarVector)
+{
+    ostringstream stream;
+    stream << "POS: " << 0 << endl << "CIGAR: ";
 
+    for(int i=0;i<cigarVector.size();i++) {
+        char current = cigarVector[i];
+        int j = 0;
+        while(current==cigarVector[i] || (current=='=' && cigarVector[i]=='M')) {
+            j++;
+            i++;
+        }
+        i--;
+        if(current=='=') {
+            stream << j << "M";
+        } else {
+            stream << j << current;
+        }
+    }
+
+    return stream.str();
+}
+
+string extendedCigarOutput(vector<char>& cigarVector)
+{
+    ostringstream stream;
+    stream << "POS: " << 0 << endl << "CIGAR: ";
+
+    for(int i=0;i<cigarVector.size();i++) {
+        char current = cigarVector[i];
+        int j = 0;
+        while(current==cigarVector[i]) {
+            j++;
+            i++;
+        }
+        i--;
+        stream << j << current;
+    }
+
+    return stream.str();
+}
 
 string standardCigarOutput(vector<Triple>& Sij)
 {
