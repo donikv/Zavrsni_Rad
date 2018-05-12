@@ -40,7 +40,7 @@ int algorithm2(const std::vector<unsigned char>& R, const std::vector<unsigned c
                         break;
                     case 2:
                         cv = cigarDict[L{d+1,e-1}];
-                        cv.push_back('M');
+                        cv.push_back('X');
                         break;
                     case 3:
                         cv = cigarDict[L{d-1,e-1}];
@@ -262,12 +262,12 @@ string standardCigarOutput(vector<char>& cigarVector)
     for(int i=0;i<cigarVector.size();i++) {
         char current = cigarVector[i];
         int j = 0;
-        while(current==cigarVector[i] || (current=='=' && cigarVector[i]=='M')) {
+        while(current==cigarVector[i] || (current=='=' && cigarVector[i]=='X') || (current=='X' && cigarVector[i]=='=')) {
             j++;
             i++;
         }
         i--;
-        if(current=='=') {
+        if(current=='='|| current=='X') {
             stream << j << "M";
         } else {
             stream << j << current;
