@@ -185,10 +185,6 @@ int findAlgimentWithLowestKPREFIX(const std::vector<unsigned char>& R, const std
         if(nk != 0) nk = m/nk;
         int k = algorithm2(R,B,D,m,n,0,m, 0, equality, false, true, cigarVector);
         if (k!=-1) {
-            for (auto c: cigarVector) {
-                printf("%c", c);
-            }
-            printf("\n");
             if(cigar) {
                 cigarOutput = standardCigarOutput(cigarVector);
             }  
