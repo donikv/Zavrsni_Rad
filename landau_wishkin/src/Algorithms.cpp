@@ -71,6 +71,7 @@ int algorithm2(const std::vector<unsigned char>& R, const std::vector<unsigned c
 int algorithm3(const std::vector<unsigned char>& R, const std::vector<unsigned char>& B, const std::vector<unsigned int>& MAXLENGTH,int m, int n, int k, EqualityDefinition& equality, bool prefix, bool cigar, string& cigarOutput)
 {
     int j = 0;
+    int e = 0;
     std::vector<Triple> Sij;
 
     for(int i=0; i<(prefix ? 1 : n-m+k);i++){
@@ -88,7 +89,7 @@ int algorithm3(const std::vector<unsigned char>& R, const std::vector<unsigned c
         unsigned int row = 0;
         unsigned int l1;
         int num = 0;
-        int e = 0;
+        e = 0;
         int d = -e;
 
         for (; e<=k; e++){
@@ -166,7 +167,7 @@ int algorithm3(const std::vector<unsigned char>& R, const std::vector<unsigned c
                 break;
             }
         }
-        if(row == m) { if (cigar) cigarOutput = standardCigarOutput(Sij); return k; }
+        if(row == m) { if (cigar) cigarOutput = standardCigarOutput(Sij); return e; }
     }
     return -1;
 }
@@ -227,26 +228,15 @@ int findAlgimentWithLowestKINFIX(const std::vector<unsigned char>& R, const std:
     int m = R.size();
     int n = B.size();
 
-    // shared_ptr<thread_pool::ThreadPool> thread_pool = thread_pool::createThreadPool();
-    // vector<future<int>> thread_futures;
     std::vector<unsigned int> MAXLENGTH((m)*(m));
     maxlength(R, MAXLENGTH, m, equality);
 
     for(int k = 0; k<=m; k++)
     {
-        //thread_futures.emplace_back(thread_pool->submit_task(algorithm3, R, B, MAXLENGTH, m, n, k, equality, true, cigar, cigarOutput));
+        //if (k==0) k=64;
         int ret = algorithm3(R, B, MAXLENGTH, m, n, k, equality, false, cigar, cigarOutput);
         if(ret != -1) return ret;
     }
-
-    // for(auto& fut : thread_futures)
-    // {
-    //     fut.wait();
-    //     int ret = fut.get();
-
-    //     if(ret != -1) return ret;
-    // }
-
     return -1;
 }
 
