@@ -57,7 +57,7 @@ string extendedCigarOutput(vector<Triple>& Sij);
 string standardCigarOutput(vector<char>& cigarVector);
 string extendedCigarOutput(vector<char>& cigarVector);
 
-int algorithm3(const std::vector<unsigned char>& R, const std::vector<unsigned char>& B, const std::vector<unsigned int>& MAXLENGTH,int m, int n, int k, EqualityDefinition& equality, bool prefix, bool cigar=false, string& cigarOutput = nullString);
+int algorithm3(const std::vector<unsigned char>& R, const std::vector<unsigned char>& B, const std::vector<unsigned int>& MAXLENGTH,int m, int n, int k, EqualityDefinition& equality, bool prefix, bool cigar=false, vector<char>& cigarVector = nullVector);
 
 int algorithm2(const std::vector<unsigned char>& R, const std::vector<unsigned char>& B, std::unordered_map<L, int, Hasher, EqualFn>& D, int m, int n, int bStart, int k, int nk, EqualityDefinition& equality, bool global = false, bool cigar = false,  vector<char>& cigarVector = nullVector);
 

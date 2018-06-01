@@ -1,0 +1,118 @@
+[1m
+SHW, short query (<= 500bp) and long target.[21m
+[4mQuery length: 50[24m
+  Query: ./E_coli_DH1/prefixes/50bp/mutated_60_perc.fasta
+    => Edlib, 100 repetition(s): time=[93m0.452232333333[0ms, score=22
+    => Edlib (path), 100 repetition(s): time=0.450992333333s, score=22
+    => LandauVishkin, 100 repetition(s): time=0.015818s, score=22
+  Query: ./E_coli_DH1/prefixes/50bp/mutated_70_perc.fasta
+    => Edlib, 100 repetition(s): time=[93m0.452216[0ms, score=15
+    => Edlib (path), 100 repetition(s): time=0.457465666667s, score=15
+    => LandauVishkin, 100 repetition(s): time=0.009348s, score=15
+  Query: ./E_coli_DH1/prefixes/50bp/mutated_80_perc.fasta
+    => Edlib, 100 repetition(s): time=[93m0.449498666667[0ms, score=11
+    => Edlib (path), 100 repetition(s): time=0.451406333333s, score=11
+    => LandauVishkin, 100 repetition(s): time=0.00604533333333s, score=11
+  Query: ./E_coli_DH1/prefixes/50bp/mutated_90_perc.fasta
+    => Edlib, 100 repetition(s): time=[93m0.451481666667[0ms, score=4
+    => Edlib (path), 100 repetition(s): time=0.451392666667s, score=4
+    => LandauVishkin, 100 repetition(s): time=0.00273166666667s, score=4
+  Query: ./E_coli_DH1/prefixes/50bp/mutated_94_perc.fasta
+    => Edlib, 100 repetition(s): time=[93m0.450286666667[0ms, score=3
+    => Edlib (path), 100 repetition(s): time=0.452094333333s, score=3
+    => LandauVishkin, 100 repetition(s): time=0.00261433333333s, score=3
+  Query: ./E_coli_DH1/prefixes/50bp/mutated_97_perc.fasta
+    => Edlib, 100 repetition(s): time=[93m0.452815333333[0ms, score=3
+    => Edlib (path), 100 repetition(s): time=0.453054333333s, score=3
+    => LandauVishkin, 100 repetition(s): time=0.002661s, score=3
+  Query: ./E_coli_DH1/prefixes/50bp/mutated_99_perc.fasta
+    => Edlib, 100 repetition(s): time=[93m0.451942333333[0ms, score=1
+    => Edlib (path), 100 repetition(s): time=0.452449s, score=1
+    => LandauVishkin, 100 repetition(s): time=0.00243433333333s, score=1
+[4mQuery length: 100[24m
+  Query: ./E_coli_DH1/prefixes/100bp/mutated_60_perc.fasta
+    => Edlib, 100 repetition(s): time=[93m0.451727[0ms, score=47
+    => Edlib (path), 100 repetition(s): time=0.453033s, score=47
+    => LandauVishkin, 100 repetition(s): time=0.065068s, score=47
+  Query: ./E_coli_DH1/prefixes/100bp/mutated_70_perc.fasta
+    => Edlib, 100 repetition(s): time=[93m0.453441[0ms, score=35
+    => Edlib (path), 100 repetition(s): time=0.457905333333s, score=35
+    => LandauVishkin, 100 repetition(s): time=0.0376336666667s, score=35
+  Query: ./E_coli_DH1/prefixes/100bp/mutated_80_perc.fasta
+    => Edlib, 100 repetition(s): time=[93m0.451196666667[0ms, score=22
+    => Edlib (path), 100 repetition(s): time=0.45252s, score=22
+    => LandauVishkin, 100 repetition(s): time=0.0196176666667s, score=22
+  Query: ./E_coli_DH1/prefixes/100bp/mutated_90_perc.fasta
+    => Edlib, 100 repetition(s): time=[93m0.450901333333[0ms, score=9
+    => Edlib (path), 100 repetition(s): time=0.453700333333s, score=9
+    => LandauVishkin, 100 repetition(s): time=0.00748066666667s, score=9
+  Query: ./E_coli_DH1/prefixes/100bp/mutated_94_perc.fasta
+    => Edlib, 100 repetition(s): time=[93m0.453059666667[0ms, score=7
+    => Edlib (path), 100 repetition(s): time=0.453363s, score=7
+    => LandauVishkin, 100 repetition(s): time=0.006798s, score=7
+  Query: ./E_coli_DH1/prefixes/100bp/mutated_97_perc.fasta
+    => Edlib, 100 repetition(s): time=[93m0.452484[0ms, score=4
+    => Edlib (path), 100 repetition(s): time=0.454241666667s, score=4
+    => LandauVishkin, 100 repetition(s): time=0.00585466666667s, score=4
+  Query: ./E_coli_DH1/prefixes/100bp/mutated_99_perc.fasta
+    => Edlib, 100 repetition(s): time=[93m0.452559[0ms, score=2
+    => Edlib (path), 100 repetition(s): time=0.452743333333s, score=2
+    => LandauVishkin, 100 repetition(s): time=0.005413s, score=2
+[4mQuery length: 250[24m
+  Query: ./E_coli_DH1/prefixes/250bp/mutated_60_perc.fasta
+    => Edlib, 100 repetition(s): time=[93m0.452287[0ms, score=111
+    => Edlib (path), 100 repetition(s): time=0.455094333333s, score=111
+    => LandauVishkin, 100 repetition(s): time=0.338579s, score=111
+  Query: ./E_coli_DH1/prefixes/250bp/mutated_70_perc.fasta
+    => Edlib, 100 repetition(s): time=[93m0.454105666667[0ms, score=92
+    => Edlib (path), 100 repetition(s): time=0.458269333333s, score=92
+    => LandauVishkin, 100 repetition(s): time=0.250493333333s, score=92
+  Query: ./E_coli_DH1/prefixes/250bp/mutated_80_perc.fasta
+    => Edlib, 100 repetition(s): time=[93m0.452922333333[0ms, score=55
+    => Edlib (path), 100 repetition(s): time=0.455871s, score=55
+    => LandauVishkin, 100 repetition(s): time=0.103665333333s, score=55
+  Query: ./E_coli_DH1/prefixes/250bp/mutated_90_perc.fasta
+    => Edlib, 100 repetition(s): time=[93m0.453148333333[0ms, score=32
+    => Edlib (path), 100 repetition(s): time=0.457144666667s, score=32
+    => LandauVishkin, 100 repetition(s): time=0.045516s, score=32
+  Query: ./E_coli_DH1/prefixes/250bp/mutated_94_perc.fasta
+    => Edlib, 100 repetition(s): time=[93m0.451988666667[0ms, score=16
+    => Edlib (path), 100 repetition(s): time=0.455177333333s, score=16
+    => LandauVishkin, 100 repetition(s): time=0.0256523333333s, score=16
+  Query: ./E_coli_DH1/prefixes/250bp/mutated_97_perc.fasta
+    => Edlib, 100 repetition(s): time=[93m0.452640666667[0ms, score=10
+    => Edlib (path), 100 repetition(s): time=0.457340333333s, score=10
+    => LandauVishkin, 100 repetition(s): time=0.0166893333333s, score=10
+  Query: ./E_coli_DH1/prefixes/250bp/mutated_99_perc.fasta
+    => Edlib, 100 repetition(s): time=[93m0.45233[0ms, score=5
+    => Edlib (path), 100 repetition(s): time=0.454715666667s, score=5
+    => LandauVishkin, 100 repetition(s): time=0.0144233333333s, score=5
+[4mQuery length: 500[24m
+  Query: ./E_coli_DH1/prefixes/500bp/mutated_60_perc.fasta
+    => Edlib, 100 repetition(s): time=[93m0.454257[0ms, score=239
+    => Edlib (path), 100 repetition(s): time=0.459822333333s, score=239
+    => LandauVishkin, 100 repetition(s): time=3.79028866667s, score=239
+  Query: ./E_coli_DH1/prefixes/500bp/mutated_70_perc.fasta
+    => Edlib, 100 repetition(s): time=[93m0.455228666667[0ms, score=180
+    => Edlib (path), 100 repetition(s): time=0.460024333333s, score=180
+    => LandauVishkin, 100 repetition(s): time=1.93658233333s, score=180
+  Query: ./E_coli_DH1/prefixes/500bp/mutated_80_perc.fasta
+    => Edlib, 100 repetition(s): time=[93m0.454815666667[0ms, score=108
+    => Edlib (path), 100 repetition(s): time=0.461644666667s, score=108
+    => LandauVishkin, 100 repetition(s): time=0.361306333333s, score=108
+  Query: ./E_coli_DH1/prefixes/500bp/mutated_90_perc.fasta
+    => Edlib, 100 repetition(s): time=[93m0.453902333333[0ms, score=63
+    => Edlib (path), 100 repetition(s): time=0.459310666667s, score=63
+    => LandauVishkin, 100 repetition(s): time=0.152852s, score=63
+  Query: ./E_coli_DH1/prefixes/500bp/mutated_94_perc.fasta
+    => Edlib, 100 repetition(s): time=[93m0.454489666667[0ms, score=28
+    => Edlib (path), 100 repetition(s): time=0.461492666667s, score=28
+    => LandauVishkin, 100 repetition(s): time=0.053145s, score=28
+  Query: ./E_coli_DH1/prefixes/500bp/mutated_97_perc.fasta
+    => Edlib, 100 repetition(s): time=[93m0.453718333333[0ms, score=15
+    => Edlib (path), 100 repetition(s): time=0.457775s, score=15
+    => LandauVishkin, 100 repetition(s): time=0.0351113333333s, score=15
+  Query: ./E_coli_DH1/prefixes/500bp/mutated_99_perc.fasta
+    => Edlib, 100 repetition(s): time=[93m0.454818333333[0ms, score=7
+    => Edlib (path), 100 repetition(s): time=0.459325666667s, score=7
+    => LandauVishkin, 100 repetition(s): time=0.028945s, score=7

@@ -68,15 +68,17 @@ int algorithm2(const std::vector<unsigned char>& R, const std::vector<unsigned c
     return -1;
 }
 
-int algorithm3(const std::vector<unsigned char>& R, const std::vector<unsigned char>& B, const std::vector<unsigned int>& MAXLENGTH,int m, int n, int k, EqualityDefinition& equality, bool prefix, bool cigar, string& cigarOutput)
+int algorithm3(const std::vector<unsigned char>& R, const std::vector<unsigned char>& B, const std::vector<unsigned int>& MAXLENGTH,int m, int n, int k, EqualityDefinition& equality, bool prefix, bool cigar, vector<char>& cigarVector)
 {
     int j = 0;
     int e = 0;
     std::vector<Triple> Sij;
+    unordered_map<L,vector<char>, Hasher, EqualFn> cigarDict;
 
     for(int i=0; i<(prefix ? 1 : n-m+k);i++){
         std::unordered_map<L, std::vector<Triple>, Hasher, EqualFn> lSeqMap;
         std::unordered_map<L, int, Hasher, EqualFn> D;
+        vector<char> cv;
 
         for (int d = -(k); d<=k; d++){
             D[L{d,abs(d)-2}] = -5;
@@ -103,6 +105,24 @@ int algorithm3(const std::vector<unsigned char>& R, const std::vector<unsigned c
                     row = max(D[L{d,e-1}]+1, D[L{d+1,e-1}]+1, D[L{d-1,e-1}], &num);
                 }
 
+                if(cigar){
+                    switch (num){
+                        case 1:
+                            cv = cigarDict[L{d,e-1}];
+                            if(e!=0)
+                                cv.push_back('I');
+                            break;
+                        case 2:
+                            cv = cigarDict[L{d+1,e-1}];
+                            cv.push_back('X');
+                            break;
+                        case 3:
+                            cv = cigarDict[L{d-1,e-1}];
+                            cv.push_back('D');
+                            break;
+                    }
+                }
+
                 l1 = row;
                 while(row+d+i<=j){
                     unsigned int c=0;
@@ -118,23 +138,31 @@ int algorithm3(const std::vector<unsigned char>& R, const std::vector<unsigned c
                     if(f>=1) {
                         if(f != MAXLENGTH[c*m+row]) {
                             row += std::min(f,MAXLENGTH[c*m+row]);
+                            if (cigar) {
+                                for(int a=0;a<std::min(f,MAXLENGTH[c*m+row]);a++) cv.push_back('=');
+                            }
                             goto inst5;
                         } else {
+                            if (cigar) {
+                                for(int a=0;a<f;a++) cv.push_back('=');
+                            }
                             row += f;
                         }
                     } else {
                         if(!(equality.areEqual(R[row], B[row+d+i]))){
                             goto inst5;
                         } else {
+                            if (cigar) cv.push_back('=');
                             row++;
                         }
                     }
                 }
 
-                while(equality.areEqual(R[row], B[row+d+i]) && row<m) row++;
+                while(equality.areEqual(R[row], B[row+d+i]) && row<m){ row++; if (cigar) cv.push_back('='); } 
 
             inst5:
                 D[L{d,e}] = row;
+                if (cigar) cigarDict[L{d,e}] = cv;
 
                 L pickedL; //get L that was picked as the L that gives the maximum row
                 if(num==1) { pickedL.d = d; pickedL.e = e-1; }
@@ -158,8 +186,11 @@ int algorithm3(const std::vector<unsigned char>& R, const std::vector<unsigned c
         if(i+row+d<=j) continue;
         j = i+row+d;
 
+        L current_L;
+
         for(int l = -k; l<=k; l++){
-            std::vector<Triple> sequenceForCurrentL = lSeqMap[L{l,k}];
+            current_L = L{l,k};
+            std::vector<Triple> sequenceForCurrentL = lSeqMap[current_L];
             if(sequenceForCurrentL.size()<=0) continue;
 
             if((sequenceForCurrentL.back().p+sequenceForCurrentL.back().f)>=j) {
@@ -167,7 +198,7 @@ int algorithm3(const std::vector<unsigned char>& R, const std::vector<unsigned c
                 break;
             }
         }
-        if(row == m) { if (cigar) cigarOutput = standardCigarOutput(Sij); return e; }
+        if(row == m) { if (cigar) cigarVector = cigarDict[current_L]; return e; }
     }
     return -1;
 }
@@ -213,7 +244,8 @@ int findAlgimentWithLowestKGLOBAL(const std::vector<unsigned char>& R, const std
             if(cigar) {
                 std::vector<unsigned int> MAXLENGTH((m)*(m));
                 maxlength(R, MAXLENGTH, m, equality);
-                algorithm3(R, B, MAXLENGTH, m, n, k, equality, true, cigar, cigarOutput);
+                algorithm3(R, B, MAXLENGTH, m, n, k, equality, true, cigar, cigarVector);
+                cigarOutput = standardCigarOutput(cigarVector);
             }  
             return k; 
         } 
@@ -230,11 +262,15 @@ int findAlgimentWithLowestKINFIX(const std::vector<unsigned char>& R, const std:
 
     std::vector<unsigned int> MAXLENGTH((m)*(m));
     maxlength(R, MAXLENGTH, m, equality);
+    vector<char> cigarVector;
 
     for(int k = 0; k<=m; k++)
     {
         //if (k==0) k=64;
-        int ret = algorithm3(R, B, MAXLENGTH, m, n, k, equality, false, cigar, cigarOutput);
+        int ret = algorithm3(R, B, MAXLENGTH, m, n, k, equality, false, cigar, cigarVector);
+        if(cigar) {
+            cigarOutput = standardCigarOutput(cigarVector);
+        }
         if(ret != -1) return ret;
     }
     return -1;

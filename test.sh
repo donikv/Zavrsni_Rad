@@ -14,4 +14,4 @@ mkdir -p results
 cd /home/donik/Git/edlib/test_data
 echo $dir
 
-bash perf_tests2.sh > "$dir/results/results.txt" && perl resultsParser.pl results/results.txt > "$dir/results/results.csv"
+bash perf_tests2${1}.sh > "$dir/results/results${1}.txt" && perl $dir/resultsParser.pl $dir/results/results${1}.txt > "$dir/results/results${1}.csv"

@@ -1,0 +1,10 @@
+[1m
+HW, short query (<= 500bp) and long target.[21m
+[4mQuery length: 50[24m
+  Query: ./E_coli_DH1/mason_illumina_reads/50bp/e_coli_DH1_illumina_1x50.fasta
+    => Edlib, 1 repetition(s): time=[93m0.0401726666667[0ms, score=0
+    => Edlib (path), 1 repetition(s): time=0.0426183333333s, score=0
+    => LandauVishkin, 1 repetition(s): time=2.02446533333s, score=0
+  Query: ./E_coli_DH1/mason_illumina_reads/50bp/mutated_60_perc.fasta
+    => Edlib, 1 repetition(s): time=[93m0.0398696666667[0ms, score=15
+    => Edlib (path), 1 repetition(s): time=0.0426336666667s, score=15
