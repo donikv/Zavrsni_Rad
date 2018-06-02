@@ -1,0 +1,134 @@
+unordered_map<L,vector<char>, Hasher, EqualFn> cigarDict;
+vector<char> cv;
+
+for (int d = -(k); d<=k; d++){
+    if(d>=-nk && d<=nk && d!=0) continue;
+    D[L{d,abs(d)-2}] = -5;
+    if(d<0) D[L{d, -d-1}] = -d-1;
+    else D[L{d, d-1}] = -1;
+
+    if(cigar){
+        cigarDict[L{d,abs(d)-2}] = cv;
+        cigarDict[L{d,abs(d)-1}] = cv;
+    }
+}
+
+if(d==-e){
+    row = max(D[L{d,e-1}]+1, D[L{d+1,e-1}]+1, -5, &num);
+} else if (d==e) {
+    row = max(D[L{d,e-1}]+1, -5, D[L{d-1,e-1}], &num);
+} else {
+    row = max(D[L{d,e-1}]+1, D[L{d+1,e-1}]+1, D[L{d-1,e-1}], &num);
+}
+
+
+if(cigar){
+    switch (num){
+        case 1:
+            cv = cigarDict[L{d,e-1}];
+            if(e!=0)
+                cv.push_back('I');
+            break;
+        case 2:
+            cv = cigarDict[L{d+1,e-1}];
+            cv.push_back('X');
+            break;
+        case 3:
+            cv = cigarDict[L{d-1,e-1}];
+            cv.push_back('D');
+            break;
+    }
+}
+
+while(equality.areEqual(R[row], B[row+d+bStart]) && row<m) {
+    if (cigar) cv.push_back('=');
+    row++;
+}
+D[L{d,e}] = row;
+if (cigar) cigarDict[L{d,e}] = cv;
+
+for (int e = nk; e<=k; e++) {
+    for(int d = -e; d<=e; d++) {
+
+        
+
+        if(row == m) {
+            if (cigar) cigarVector = cv;
+        }
+    }
+}
+return -1;
+
+l1 = row;
+while(row+d+i<=j){
+    unsigned int c=0;
+    unsigned int f=0;
+    for(const auto& t: Sij){
+        if(t.p+t.f>row+d+i && t.p==row+d+i){
+            f=t.f;
+            c=t.c;
+            break;
+        }
+    }
+
+    if(f>=1) {
+        if(f != MAXLENGTH[c*m+row]) {
+            row += std::min(f,MAXLENGTH[c*m+row]);
+            if (cigar) {
+                for(int a=0;a<std::min(f,MAXLENGTH[c*m+row]);a++) cv.push_back('=');
+            }
+            goto inst5;
+        } else {
+            if (cigar) {
+                for(int a=0;a<f;a++) cv.push_back('=');
+            }
+            row += f;
+        }
+    } else {
+        if(!(equality.areEqual(R[row], B[row+d+i]))){
+            goto inst5;
+        } else {
+            if (cigar) cv.push_back('=');
+            row++;
+        }
+    }
+}
+
+inst5:
+D[L{d,e}] = row;
+if (cigar) cigarDict[L{d,e}] = cv;
+
+L pickedL; //get L that was picked as the L that gives the maximum row
+if(num==1) { pickedL.d = d; pickedL.e = e-1; }
+else if(num == 2){ pickedL.d = d+1; pickedL.e = e-1; }
+else { pickedL.d = d-1; pickedL.e = e-1; }
+
+std::vector<Triple> sequenceForCurrentL = lSeqMap[pickedL];
+
+if((pickedL.d == d-1 || pickedL.d == d) && l1+d>0) sequenceForCurrentL.push_back(Triple{i+l1+d-1,0,0});
+if(row>l1) sequenceForCurrentL.push_back(Triple{i+l1+d, l1, row-l1});
+lSeqMap[L{d,e}] = sequenceForCurrentL;
+
+if(row == m){
+    goto inst7;
+}
+
+if(i+row+d<=j) continue;
+j = i+row+d;
+
+L current_L;
+
+for(int l = -k; l<=k; l++){
+    current_L = L{l,k};
+    std::vector<Triple> sequenceForCurrentL = lSeqMap[current_L];
+    if(sequenceForCurrentL.size()<=0) continue;
+
+    if((sequenceForCurrentL.back().p+sequenceForCurrentL.back().f)>=j) {
+        Sij = sequenceForCurrentL;
+        break;
+    }
+}
+if(row == m) { 
+    if (cigar) cigarVector = cigarDict[current_L]; 
+    return e; 
+}

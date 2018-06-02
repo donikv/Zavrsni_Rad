@@ -13,7 +13,7 @@ int landauVishkinAlignAlgorithm(const std::vector<unsigned char>& R, const std::
         else D[L{d, d-1}] = -1;
 
         if(cigar){
-            cigarDict[L{d,abs(d)-1}] = cv;
+            cigarDict[L{d,abs(d)-2}] = cv;
             cigarDict[L{d,abs(d)-1}] = cv;
         }
     }

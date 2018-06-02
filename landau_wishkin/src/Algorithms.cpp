@@ -13,7 +13,7 @@ int algorithm2(const std::vector<unsigned char>& R, const std::vector<unsigned c
         else D[L{d, d-1}] = -1;
 
         if(cigar){
-            cigarDict[L{d,abs(d)-1}] = cv;
+            cigarDict[L{d,abs(d)-2}] = cv;
             cigarDict[L{d,abs(d)-1}] = cv;
         }
     }
@@ -86,6 +86,11 @@ int algorithm3(const std::vector<unsigned char>& R, const std::vector<unsigned c
             else D[L{d, d-1}] = -1;
             lSeqMap[L{d,abs(d)-2}] = std::vector<Triple>();
             lSeqMap[L{d,abs(d)-1}] = std::vector<Triple>();
+
+            if(cigar){
+                cigarDict[L{d,abs(d)-2}] = cv;
+                cigarDict[L{d,abs(d)-1}] = cv;
+            }
         }
 
         unsigned int row = 0;
@@ -158,7 +163,10 @@ int algorithm3(const std::vector<unsigned char>& R, const std::vector<unsigned c
                     }
                 }
 
-                while(equality.areEqual(R[row], B[row+d+i]) && row<m){ row++; if (cigar) cv.push_back('='); } 
+                while(equality.areEqual(R[row], B[row+d+i]) && row<m) { 
+                    row++; 
+                    if (cigar) cv.push_back('='); 
+                } 
 
             inst5:
                 D[L{d,e}] = row;
@@ -188,7 +196,7 @@ int algorithm3(const std::vector<unsigned char>& R, const std::vector<unsigned c
 
         L current_L;
 
-        for(int l = -k; l<=k; l++){
+        for(int l = -k; l<=k; l++){//TODO SMISLITI BOLJI NAČIN KOJI NIJE O(k)
             current_L = L{l,k};
             std::vector<Triple> sequenceForCurrentL = lSeqMap[current_L];
             if(sequenceForCurrentL.size()<=0) continue;
@@ -198,7 +206,10 @@ int algorithm3(const std::vector<unsigned char>& R, const std::vector<unsigned c
                 break;
             }
         }
-        if(row == m) { if (cigar) cigarVector = cigarDict[current_L]; return e; }
+        if(row == m) { 
+            if (cigar) cigarVector = cigarDict[current_L]; 
+            return e; 
+        }
     }
     return -1;
 }
