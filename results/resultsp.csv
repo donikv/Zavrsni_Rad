@@ -1,85 +1,85 @@
 Uzorak,Duljina uzorka,Algoritam,Broj ponavljanja,Vrijeme,Udaljenost
-./E_coli_DH1/prefixes/50bp/mutated_60_perc.fasta,50,Edlib,100,[93m0.452232333333[0m,22
-./E_coli_DH1/prefixes/50bp/mutated_60_perc.fasta,50,Edlib (path),100,0.450992333333,22
-./E_coli_DH1/prefixes/50bp/mutated_60_perc.fasta,50,LandauVishkin,100,0.015818,22
-./E_coli_DH1/prefixes/50bp/mutated_70_perc.fasta,50,Edlib,100,[93m0.452216[0m,15
-./E_coli_DH1/prefixes/50bp/mutated_70_perc.fasta,50,Edlib (path),100,0.457465666667,15
-./E_coli_DH1/prefixes/50bp/mutated_70_perc.fasta,50,LandauVishkin,100,0.009348,15
-./E_coli_DH1/prefixes/50bp/mutated_80_perc.fasta,50,Edlib,100,[93m0.449498666667[0m,11
-./E_coli_DH1/prefixes/50bp/mutated_80_perc.fasta,50,Edlib (path),100,0.451406333333,11
-./E_coli_DH1/prefixes/50bp/mutated_80_perc.fasta,50,LandauVishkin,100,0.00604533333333,11
-./E_coli_DH1/prefixes/50bp/mutated_90_perc.fasta,50,Edlib,100,[93m0.451481666667[0m,4
-./E_coli_DH1/prefixes/50bp/mutated_90_perc.fasta,50,Edlib (path),100,0.451392666667,4
-./E_coli_DH1/prefixes/50bp/mutated_90_perc.fasta,50,LandauVishkin,100,0.00273166666667,4
-./E_coli_DH1/prefixes/50bp/mutated_94_perc.fasta,50,Edlib,100,[93m0.450286666667[0m,3
-./E_coli_DH1/prefixes/50bp/mutated_94_perc.fasta,50,Edlib (path),100,0.452094333333,3
-./E_coli_DH1/prefixes/50bp/mutated_94_perc.fasta,50,LandauVishkin,100,0.00261433333333,3
-./E_coli_DH1/prefixes/50bp/mutated_97_perc.fasta,50,Edlib,100,[93m0.452815333333[0m,3
-./E_coli_DH1/prefixes/50bp/mutated_97_perc.fasta,50,Edlib (path),100,0.453054333333,3
-./E_coli_DH1/prefixes/50bp/mutated_97_perc.fasta,50,LandauVishkin,100,0.002661,3
-./E_coli_DH1/prefixes/50bp/mutated_99_perc.fasta,50,Edlib,100,[93m0.451942333333[0m,1
-./E_coli_DH1/prefixes/50bp/mutated_99_perc.fasta,50,Edlib (path),100,0.452449,1
-./E_coli_DH1/prefixes/50bp/mutated_99_perc.fasta,50,LandauVishkin,100,0.00243433333333,1
-./E_coli_DH1/prefixes/100bp/mutated_60_perc.fasta,100,Edlib,100,[93m0.451727[0m,47
-./E_coli_DH1/prefixes/100bp/mutated_60_perc.fasta,100,Edlib (path),100,0.453033,47
-./E_coli_DH1/prefixes/100bp/mutated_60_perc.fasta,100,LandauVishkin,100,0.065068,47
-./E_coli_DH1/prefixes/100bp/mutated_70_perc.fasta,100,Edlib,100,[93m0.453441[0m,35
-./E_coli_DH1/prefixes/100bp/mutated_70_perc.fasta,100,Edlib (path),100,0.457905333333,35
-./E_coli_DH1/prefixes/100bp/mutated_70_perc.fasta,100,LandauVishkin,100,0.0376336666667,35
-./E_coli_DH1/prefixes/100bp/mutated_80_perc.fasta,100,Edlib,100,[93m0.451196666667[0m,22
-./E_coli_DH1/prefixes/100bp/mutated_80_perc.fasta,100,Edlib (path),100,0.45252,22
-./E_coli_DH1/prefixes/100bp/mutated_80_perc.fasta,100,LandauVishkin,100,0.0196176666667,22
-./E_coli_DH1/prefixes/100bp/mutated_90_perc.fasta,100,Edlib,100,[93m0.450901333333[0m,9
-./E_coli_DH1/prefixes/100bp/mutated_90_perc.fasta,100,Edlib (path),100,0.453700333333,9
-./E_coli_DH1/prefixes/100bp/mutated_90_perc.fasta,100,LandauVishkin,100,0.00748066666667,9
-./E_coli_DH1/prefixes/100bp/mutated_94_perc.fasta,100,Edlib,100,[93m0.453059666667[0m,7
-./E_coli_DH1/prefixes/100bp/mutated_94_perc.fasta,100,Edlib (path),100,0.453363,7
-./E_coli_DH1/prefixes/100bp/mutated_94_perc.fasta,100,LandauVishkin,100,0.006798,7
-./E_coli_DH1/prefixes/100bp/mutated_97_perc.fasta,100,Edlib,100,[93m0.452484[0m,4
-./E_coli_DH1/prefixes/100bp/mutated_97_perc.fasta,100,Edlib (path),100,0.454241666667,4
-./E_coli_DH1/prefixes/100bp/mutated_97_perc.fasta,100,LandauVishkin,100,0.00585466666667,4
-./E_coli_DH1/prefixes/100bp/mutated_99_perc.fasta,100,Edlib,100,[93m0.452559[0m,2
-./E_coli_DH1/prefixes/100bp/mutated_99_perc.fasta,100,Edlib (path),100,0.452743333333,2
-./E_coli_DH1/prefixes/100bp/mutated_99_perc.fasta,100,LandauVishkin,100,0.005413,2
-./E_coli_DH1/prefixes/250bp/mutated_60_perc.fasta,250,Edlib,100,[93m0.452287[0m,111
-./E_coli_DH1/prefixes/250bp/mutated_60_perc.fasta,250,Edlib (path),100,0.455094333333,111
-./E_coli_DH1/prefixes/250bp/mutated_60_perc.fasta,250,LandauVishkin,100,0.338579,111
-./E_coli_DH1/prefixes/250bp/mutated_70_perc.fasta,250,Edlib,100,[93m0.454105666667[0m,92
-./E_coli_DH1/prefixes/250bp/mutated_70_perc.fasta,250,Edlib (path),100,0.458269333333,92
-./E_coli_DH1/prefixes/250bp/mutated_70_perc.fasta,250,LandauVishkin,100,0.250493333333,92
-./E_coli_DH1/prefixes/250bp/mutated_80_perc.fasta,250,Edlib,100,[93m0.452922333333[0m,55
-./E_coli_DH1/prefixes/250bp/mutated_80_perc.fasta,250,Edlib (path),100,0.455871,55
-./E_coli_DH1/prefixes/250bp/mutated_80_perc.fasta,250,LandauVishkin,100,0.103665333333,55
-./E_coli_DH1/prefixes/250bp/mutated_90_perc.fasta,250,Edlib,100,[93m0.453148333333[0m,32
-./E_coli_DH1/prefixes/250bp/mutated_90_perc.fasta,250,Edlib (path),100,0.457144666667,32
-./E_coli_DH1/prefixes/250bp/mutated_90_perc.fasta,250,LandauVishkin,100,0.045516,32
-./E_coli_DH1/prefixes/250bp/mutated_94_perc.fasta,250,Edlib,100,[93m0.451988666667[0m,16
-./E_coli_DH1/prefixes/250bp/mutated_94_perc.fasta,250,Edlib (path),100,0.455177333333,16
-./E_coli_DH1/prefixes/250bp/mutated_94_perc.fasta,250,LandauVishkin,100,0.0256523333333,16
-./E_coli_DH1/prefixes/250bp/mutated_97_perc.fasta,250,Edlib,100,[93m0.452640666667[0m,10
-./E_coli_DH1/prefixes/250bp/mutated_97_perc.fasta,250,Edlib (path),100,0.457340333333,10
-./E_coli_DH1/prefixes/250bp/mutated_97_perc.fasta,250,LandauVishkin,100,0.0166893333333,10
-./E_coli_DH1/prefixes/250bp/mutated_99_perc.fasta,250,Edlib,100,[93m0.45233[0m,5
-./E_coli_DH1/prefixes/250bp/mutated_99_perc.fasta,250,Edlib (path),100,0.454715666667,5
-./E_coli_DH1/prefixes/250bp/mutated_99_perc.fasta,250,LandauVishkin,100,0.0144233333333,5
-./E_coli_DH1/prefixes/500bp/mutated_60_perc.fasta,500,Edlib,100,[93m0.454257[0m,239
-./E_coli_DH1/prefixes/500bp/mutated_60_perc.fasta,500,Edlib (path),100,0.459822333333,239
-./E_coli_DH1/prefixes/500bp/mutated_60_perc.fasta,500,LandauVishkin,100,3.79028866667,239
-./E_coli_DH1/prefixes/500bp/mutated_70_perc.fasta,500,Edlib,100,[93m0.455228666667[0m,180
-./E_coli_DH1/prefixes/500bp/mutated_70_perc.fasta,500,Edlib (path),100,0.460024333333,180
-./E_coli_DH1/prefixes/500bp/mutated_70_perc.fasta,500,LandauVishkin,100,1.93658233333,180
-./E_coli_DH1/prefixes/500bp/mutated_80_perc.fasta,500,Edlib,100,[93m0.454815666667[0m,108
-./E_coli_DH1/prefixes/500bp/mutated_80_perc.fasta,500,Edlib (path),100,0.461644666667,108
-./E_coli_DH1/prefixes/500bp/mutated_80_perc.fasta,500,LandauVishkin,100,0.361306333333,108
-./E_coli_DH1/prefixes/500bp/mutated_90_perc.fasta,500,Edlib,100,[93m0.453902333333[0m,63
-./E_coli_DH1/prefixes/500bp/mutated_90_perc.fasta,500,Edlib (path),100,0.459310666667,63
-./E_coli_DH1/prefixes/500bp/mutated_90_perc.fasta,500,LandauVishkin,100,0.152852,63
-./E_coli_DH1/prefixes/500bp/mutated_94_perc.fasta,500,Edlib,100,[93m0.454489666667[0m,28
-./E_coli_DH1/prefixes/500bp/mutated_94_perc.fasta,500,Edlib (path),100,0.461492666667,28
-./E_coli_DH1/prefixes/500bp/mutated_94_perc.fasta,500,LandauVishkin,100,0.053145,28
-./E_coli_DH1/prefixes/500bp/mutated_97_perc.fasta,500,Edlib,100,[93m0.453718333333[0m,15
-./E_coli_DH1/prefixes/500bp/mutated_97_perc.fasta,500,Edlib (path),100,0.457775,15
-./E_coli_DH1/prefixes/500bp/mutated_97_perc.fasta,500,LandauVishkin,100,0.0351113333333,15
-./E_coli_DH1/prefixes/500bp/mutated_99_perc.fasta,500,Edlib,100,[93m0.454818333333[0m,7
-./E_coli_DH1/prefixes/500bp/mutated_99_perc.fasta,500,Edlib (path),100,0.459325666667,7
-./E_coli_DH1/prefixes/500bp/mutated_99_perc.fasta,500,LandauVishkin,100,0.028945,7
+./E_coli_DH1/prefixes/50bp/mutated_60_perc.fasta,50,Edlib,100,0.452577,22
+./E_coli_DH1/prefixes/50bp/mutated_60_perc.fasta,50,Edlib (path),100,0.452907,22
+./E_coli_DH1/prefixes/50bp/mutated_60_perc.fasta,50,LandauVishkin,100,0.0158383333333,22
+./E_coli_DH1/prefixes/50bp/mutated_70_perc.fasta,50,Edlib,100,0.451067,15
+./E_coli_DH1/prefixes/50bp/mutated_70_perc.fasta,50,Edlib (path),100,0.458503,15
+./E_coli_DH1/prefixes/50bp/mutated_70_perc.fasta,50,LandauVishkin,100,0.009715,15
+./E_coli_DH1/prefixes/50bp/mutated_80_perc.fasta,50,Edlib,100,0.455191333333,11
+./E_coli_DH1/prefixes/50bp/mutated_80_perc.fasta,50,Edlib (path),100,0.450647666667,11
+./E_coli_DH1/prefixes/50bp/mutated_80_perc.fasta,50,LandauVishkin,100,0.00603166666667,11
+./E_coli_DH1/prefixes/50bp/mutated_90_perc.fasta,50,Edlib,100,0.450106,4
+./E_coli_DH1/prefixes/50bp/mutated_90_perc.fasta,50,Edlib (path),100,0.451995,4
+./E_coli_DH1/prefixes/50bp/mutated_90_perc.fasta,50,LandauVishkin,100,0.00278133333333,4
+./E_coli_DH1/prefixes/50bp/mutated_94_perc.fasta,50,Edlib,100,0.452661666667,3
+./E_coli_DH1/prefixes/50bp/mutated_94_perc.fasta,50,Edlib (path),100,0.452886666667,3
+./E_coli_DH1/prefixes/50bp/mutated_94_perc.fasta,50,LandauVishkin,100,0.002606,3
+./E_coli_DH1/prefixes/50bp/mutated_97_perc.fasta,50,Edlib,100,0.450803666667,3
+./E_coli_DH1/prefixes/50bp/mutated_97_perc.fasta,50,Edlib (path),100,0.452329,3
+./E_coli_DH1/prefixes/50bp/mutated_97_perc.fasta,50,LandauVishkin,100,0.00265633333333,3
+./E_coli_DH1/prefixes/50bp/mutated_99_perc.fasta,50,Edlib,100,0.450529333333,1
+./E_coli_DH1/prefixes/50bp/mutated_99_perc.fasta,50,Edlib (path),100,0.453989333333,1
+./E_coli_DH1/prefixes/50bp/mutated_99_perc.fasta,50,LandauVishkin,100,0.00242266666667,1
+./E_coli_DH1/prefixes/100bp/mutated_60_perc.fasta,100,Edlib,100,0.452281333333,47
+./E_coli_DH1/prefixes/100bp/mutated_60_perc.fasta,100,Edlib (path),100,0.463701666667,47
+./E_coli_DH1/prefixes/100bp/mutated_60_perc.fasta,100,LandauVishkin,100,0.0648773333333,47
+./E_coli_DH1/prefixes/100bp/mutated_70_perc.fasta,100,Edlib,100,0.454289666667,35
+./E_coli_DH1/prefixes/100bp/mutated_70_perc.fasta,100,Edlib (path),100,0.456532,35
+./E_coli_DH1/prefixes/100bp/mutated_70_perc.fasta,100,LandauVishkin,100,0.0376166666667,35
+./E_coli_DH1/prefixes/100bp/mutated_80_perc.fasta,100,Edlib,100,0.452004,22
+./E_coli_DH1/prefixes/100bp/mutated_80_perc.fasta,100,Edlib (path),100,0.462619,22
+./E_coli_DH1/prefixes/100bp/mutated_80_perc.fasta,100,LandauVishkin,100,0.0196943333333,22
+./E_coli_DH1/prefixes/100bp/mutated_90_perc.fasta,100,Edlib,100,0.452040333333,9
+./E_coli_DH1/prefixes/100bp/mutated_90_perc.fasta,100,Edlib (path),100,0.454041,9
+./E_coli_DH1/prefixes/100bp/mutated_90_perc.fasta,100,LandauVishkin,100,0.007518,9
+./E_coli_DH1/prefixes/100bp/mutated_94_perc.fasta,100,Edlib,100,0.453120333333,7
+./E_coli_DH1/prefixes/100bp/mutated_94_perc.fasta,100,Edlib (path),100,0.454553333333,7
+./E_coli_DH1/prefixes/100bp/mutated_94_perc.fasta,100,LandauVishkin,100,0.00707166666667,7
+./E_coli_DH1/prefixes/100bp/mutated_97_perc.fasta,100,Edlib,100,0.454078,4
+./E_coli_DH1/prefixes/100bp/mutated_97_perc.fasta,100,Edlib (path),100,0.453826333333,4
+./E_coli_DH1/prefixes/100bp/mutated_97_perc.fasta,100,LandauVishkin,100,0.00579,4
+./E_coli_DH1/prefixes/100bp/mutated_99_perc.fasta,100,Edlib,100,0.453438,2
+./E_coli_DH1/prefixes/100bp/mutated_99_perc.fasta,100,Edlib (path),100,0.455682,2
+./E_coli_DH1/prefixes/100bp/mutated_99_perc.fasta,100,LandauVishkin,100,0.00541233333333,2
+./E_coli_DH1/prefixes/250bp/mutated_60_perc.fasta,250,Edlib,100,0.451874333333,111
+./E_coli_DH1/prefixes/250bp/mutated_60_perc.fasta,250,Edlib (path),100,0.456355,111
+./E_coli_DH1/prefixes/250bp/mutated_60_perc.fasta,250,LandauVishkin,100,0.338122333333,111
+./E_coli_DH1/prefixes/250bp/mutated_70_perc.fasta,250,Edlib,100,0.459297,92
+./E_coli_DH1/prefixes/250bp/mutated_70_perc.fasta,250,Edlib (path),100,0.45357,92
+./E_coli_DH1/prefixes/250bp/mutated_70_perc.fasta,250,LandauVishkin,100,0.251020666667,92
+./E_coli_DH1/prefixes/250bp/mutated_80_perc.fasta,250,Edlib,100,0.450493333333,55
+./E_coli_DH1/prefixes/250bp/mutated_80_perc.fasta,250,Edlib (path),100,0.455983333333,55
+./E_coli_DH1/prefixes/250bp/mutated_80_perc.fasta,250,LandauVishkin,100,0.103222,55
+./E_coli_DH1/prefixes/250bp/mutated_90_perc.fasta,250,Edlib,100,0.452042333333,32
+./E_coli_DH1/prefixes/250bp/mutated_90_perc.fasta,250,Edlib (path),100,0.454306666667,32
+./E_coli_DH1/prefixes/250bp/mutated_90_perc.fasta,250,LandauVishkin,100,0.0456443333333,32
+./E_coli_DH1/prefixes/250bp/mutated_94_perc.fasta,250,Edlib,100,0.450969333333,16
+./E_coli_DH1/prefixes/250bp/mutated_94_perc.fasta,250,Edlib (path),100,0.454726,16
+./E_coli_DH1/prefixes/250bp/mutated_94_perc.fasta,250,LandauVishkin,100,0.0224033333333,16
+./E_coli_DH1/prefixes/250bp/mutated_97_perc.fasta,250,Edlib,100,0.451789666667,10
+./E_coli_DH1/prefixes/250bp/mutated_97_perc.fasta,250,Edlib (path),100,0.453690333333,10
+./E_coli_DH1/prefixes/250bp/mutated_97_perc.fasta,250,LandauVishkin,100,0.0168446666667,10
+./E_coli_DH1/prefixes/250bp/mutated_99_perc.fasta,250,Edlib,100,0.453278,5
+./E_coli_DH1/prefixes/250bp/mutated_99_perc.fasta,250,Edlib (path),100,0.454203666667,5
+./E_coli_DH1/prefixes/250bp/mutated_99_perc.fasta,250,LandauVishkin,100,0.0144593333333,5
+./E_coli_DH1/prefixes/500bp/mutated_60_perc.fasta,500,Edlib,100,0.456621333333,239
+./E_coli_DH1/prefixes/500bp/mutated_60_perc.fasta,500,Edlib (path),100,0.460853333333,239
+./E_coli_DH1/prefixes/500bp/mutated_60_perc.fasta,500,LandauVishkin,100,3.764564,239
+./E_coli_DH1/prefixes/500bp/mutated_70_perc.fasta,500,Edlib,100,0.455765,180
+./E_coli_DH1/prefixes/500bp/mutated_70_perc.fasta,500,Edlib (path),100,0.460601,180
+./E_coli_DH1/prefixes/500bp/mutated_70_perc.fasta,500,LandauVishkin,100,1.91144833333,180
+./E_coli_DH1/prefixes/500bp/mutated_80_perc.fasta,500,Edlib,100,0.453183666667,108
+./E_coli_DH1/prefixes/500bp/mutated_80_perc.fasta,500,Edlib (path),100,0.459103,108
+./E_coli_DH1/prefixes/500bp/mutated_80_perc.fasta,500,LandauVishkin,100,0.359135666667,108
+./E_coli_DH1/prefixes/500bp/mutated_90_perc.fasta,500,Edlib,100,0.451917666667,63
+./E_coli_DH1/prefixes/500bp/mutated_90_perc.fasta,500,Edlib (path),100,0.466578666667,63
+./E_coli_DH1/prefixes/500bp/mutated_90_perc.fasta,500,LandauVishkin,100,0.153327333333,63
+./E_coli_DH1/prefixes/500bp/mutated_94_perc.fasta,500,Edlib,100,0.455977333333,28
+./E_coli_DH1/prefixes/500bp/mutated_94_perc.fasta,500,Edlib (path),100,0.459241333333,28
+./E_coli_DH1/prefixes/500bp/mutated_94_perc.fasta,500,LandauVishkin,100,0.0536113333333,28
+./E_coli_DH1/prefixes/500bp/mutated_97_perc.fasta,500,Edlib,100,0.461061,15
+./E_coli_DH1/prefixes/500bp/mutated_97_perc.fasta,500,Edlib (path),100,0.479794,15
+./E_coli_DH1/prefixes/500bp/mutated_97_perc.fasta,500,LandauVishkin,100,0.0349293333333,15
+./E_coli_DH1/prefixes/500bp/mutated_99_perc.fasta,500,Edlib,100,0.452871,7
+./E_coli_DH1/prefixes/500bp/mutated_99_perc.fasta,500,Edlib (path),100,0.457735666667,7
+./E_coli_DH1/prefixes/500bp/mutated_99_perc.fasta,500,LandauVishkin,100,0.0290766666667,7
