@@ -1,5 +1,0 @@
-[1m
-SHW, short query (<= 500bp) and long target.[21m
-[4mQuery length: 50[24m
-  Query: ./E_coli_DH1/prefixes/50bp/mutated_60_perc.fasta
-    => Edlib, 100 repetition(s): time=[93m0.454429333333[0ms, score=22

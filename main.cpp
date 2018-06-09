@@ -29,7 +29,7 @@ int main (int argc, char** argv)
 
     for(int i=0; i<atoi(argv[4]); i++){
     if (global)
-        distance = findAlgimentWithLowestKGLOBAL(Rt, Bt, equality);
+        distance = findAlgimentWithLowestKGLOBAL(Rt, Bt, equality, argc==6 ? atoi(argv[5]) : false, cigar);
     else if (infix)
         distance = findAlgimentWithLowestKINFIX(Rt, Bt, equality);
     else

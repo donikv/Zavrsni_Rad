@@ -68,6 +68,75 @@ int algorithm2(const std::vector<unsigned char>& R, const std::vector<unsigned c
     return -1;
 }
 
+int algorithm2Global(const std::vector<unsigned char>& R, const std::vector<unsigned char>& B, std::unordered_map<L, int, Hasher, EqualFn>& D, int m, int n, int bStart, int k, int nk, EqualityDefinition& equality, bool cigar, vector<char>& cigarVector)
+{
+    //bool standardCigar = false;
+    unordered_map<L,vector<char>, Hasher, EqualFn> cigarDict;
+    vector<char> cv;
+    for(int i = 0; i<bStart;i++) cv.push_back('I');
+
+    for (int d = -(k); d<=k; d++){
+        if(d>=-nk && d<=nk && d!=0) continue;
+        D[L{d,abs(d)-2}] = -5;
+        if(d<0) D[L{d, -d-1}] = -d-1;
+        else D[L{d, d-1}] = -1;
+
+        if(cigar){
+            cigarDict[L{d,abs(d)-2}] = cv;
+            cigarDict[L{d,abs(d)-1}] = cv;
+        }
+    }
+
+    unsigned int row = 0;
+    int num = 0;
+    for (int e = nk; e<=k; e++){
+        for(int d = -e; d<=e; d++){
+            if(d==-e){
+                row = max(D[L{d,e-1}]+1, D[L{d+1,e-1}]+1, -5, &num);
+            } else if (d==e) {
+                row = max(D[L{d,e-1}]+1, -5, D[L{d-1,e-1}], &num);
+            } else {
+                row = max(D[L{d,e-1}]+1, D[L{d+1,e-1}]+1, D[L{d-1,e-1}], &num);
+            }
+            
+            
+            if(cigar){
+                switch (num){
+                    case 1:
+                        cv = cigarDict[L{d,e-1}];
+                        if(e!=0)
+                            cv.push_back('I');
+                        break;
+                    case 2:
+                        cv = cigarDict[L{d+1,e-1}];
+                        cv.push_back('X');
+                        break;
+                    case 3:
+                        cv = cigarDict[L{d-1,e-1}];
+                        cv.push_back('D');
+                        break;
+                }
+            }
+
+            while(equality.areEqual(R[row], B[row+d+bStart]) && row<m && row+d+bStart < n) {
+                if (cigar) cv.push_back('=');
+                row++;
+            }
+            D[L{d,e}] = row;
+            if (cigar) cigarDict[L{d,e}] = cv;
+
+            if(row == m){
+                if (cigar) cigarVector = cv;
+                return e+(n)-m-d + bStart;
+            } else if (row+d+bStart == n) {
+                return e-(n)+m+d + bStart;
+            }
+        }
+    }
+
+    return -1;
+}
+
 int algorithm3(const std::vector<unsigned char>& R, const std::vector<unsigned char>& B, const std::vector<unsigned int>& MAXLENGTH,int m, int n, int k, EqualityDefinition& equality, bool prefix, bool cigar, vector<char>& cigarVector)
 {
     int j = 0;
@@ -246,24 +315,28 @@ int findAlgimentWithLowestKGLOBAL(const std::vector<unsigned char>& R, const std
     std::unordered_map<L, int, Hasher, EqualFn> D;
     int nk = 0;
     vector<char> cigarVector;
+    int mink = -1;
 
-    for(int i=4;i>0;i/=2)
+    for(int i=0;i<n;i++)
     {  
-        if(nk != 0) nk = m/nk;
-        int k = algorithm2(R,B,D,m,n,0,m/i, nk, equality, true);
+        if(i>mink && mink!=-1) break;
+        int k = algorithm2Global(R,B,D,m,n,i,m, nk, equality, true, cigarVector);
+        // if(cigar) {
+        //     cigarOutput = standardCigarOutput(cigarVector);
+        // }
+        // return k;
         if (k!=-1) { 
-            if(cigar) {
-                std::vector<unsigned int> MAXLENGTH((m)*(m));
-                maxlength(R, MAXLENGTH, m, equality);
-                algorithm3(R, B, MAXLENGTH, m, n, k, equality, true, cigar, cigarVector);
-                cigarOutput = standardCigarOutput(cigarVector);
-            }  
-            return k; 
+            printf("%d\n", k);
+            if(k<mink || mink == -1) {
+                mink = k;
+                if(cigar) {
+                    cigarOutput = standardCigarOutput(cigarVector);
+                } 
+            }
         } 
-        nk = i;
     }
-    
-    return -1;
+    printf("\n");
+    return mink;
 }
 
 int findAlgimentWithLowestKINFIX(const std::vector<unsigned char>& R, const std::vector<unsigned char>& B, EqualityDefinition& equality, bool cigar, string& cigarOutput)
