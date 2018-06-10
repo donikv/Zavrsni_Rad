@@ -1,0 +1,22 @@
+bool useLV = queryLength < 500 && config.mode == EDLIB_MODE_SHW;
+if (useLV) {
+    vector<unsigned char> R(query, query + queryLength); vector<unsigned char> B(target, target + targetLength); vector<unsigned char> cigarVector;
+    
+    int k = config.k < 0 ? queryLength : config.k;
+    result.endLocations = (int *) malloc(sizeof(int) * 1);
+    result.editDistance = landauVishkinAlignPrefix(R, B, k, equalityDefinition, config.task == EDLIB_TASK_PATH, cigarVector, result.endLocations);
+
+    if(result.editDistance>=0) {
+        if(config.task == EDLIB_TASK_PATH) {
+            result.alignmentLength = cigarVector.size();
+            unsigned char* alignment = new unsigned char[result.alignmentLength];
+            for(int i=0;i<result.alignmentLength;i++) alignment[i] = cigarVector[i];
+            result.alignment = alignment;
+        }
+
+        result.startLocations = (int *) malloc(sizeof(int) * 1);
+        result.startLocations[0] = 0;
+        result.numLocations = 1;
+    }
+    return result;
+}

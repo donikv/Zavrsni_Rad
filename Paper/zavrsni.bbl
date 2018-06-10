@@ -1,0 +1,74 @@
+\begin{thebibliography}{7}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Hirschberg(1975)]{Hirschberg1975}
+D.~S. Hirschberg.
+\newblock A linear space algorithm for computing maximal common subsequences.
+\newblock \emph{Commun. ACM}, 18\penalty0 (6):\penalty0 341--343, Lipanj 1975.
+\newblock ISSN 0001-0782.
+\newblock \doi{10.1145/360825.360861}.
+\newblock URL \url{http://doi.acm.org/10.1145/360825.360861}.
+
+\bibitem[Landau et~al.(1986)Landau, Vishkin, i Nussinov]{Landau1986}
+G.~M. Landau, U.~Vishkin, i R.~Nussinov.
+\newblock An efficient string matching algorithm with k differences for
+  nucleotide and amino acid sequences.
+\newblock \emph{Nucleic Acids Res}, 14\penalty0 (1):\penalty0 31--46, Jan 1986.
+\newblock ISSN 0305-1048.
+\newblock URL \url{http://www.ncbi.nlm.nih.gov/pmc/articles/PMC339353/}.
+\newblock 3753770[pmid].
+
+\bibitem[Myers(1999)]{Myers1999}
+Gene Myers.
+\newblock A fast bit-vector algorithm for approximate string matching based on
+  dynamic programming.
+\newblock \emph{J. ACM}, 46\penalty0 (3):\penalty0 395--415, Svibanj 1999.
+\newblock ISSN 0004-5411.
+\newblock \doi{10.1145/316542.316550}.
+\newblock URL \url{http://doi.acm.org/10.1145/316542.316550}.
+
+\bibitem[Needleman i Wunsch(1970)]{Needleman1970}
+Saul~B. Needleman i Christian~D. Wunsch.
+\newblock A general method applicable to the search for similarities in the
+  amino acid sequence of two proteins.
+\newblock \emph{Journal of Molecular Biology}, 48\penalty0 (3):\penalty0 443 --
+  453, 1970.
+\newblock ISSN 0022-2836.
+\newblock \doi{https://doi.org/10.1016/0022-2836(70)90057-4}.
+\newblock URL
+  \url{http://www.sciencedirect.com/science/article/pii/0022283670900574}.
+
+\bibitem[Smith i Waterman(1981)]{Smith1981}
+T.F. Smith i M.S. Waterman.
+\newblock Identification of common molecular subsequences.
+\newblock \emph{Journal of Molecular Biology}, 147\penalty0 (1):\penalty0 195
+  -- 197, 1981.
+\newblock ISSN 0022-2836.
+\newblock \doi{https://doi.org/10.1016/0022-2836(81)90087-5}.
+\newblock URL
+  \url{http://www.sciencedirect.com/science/article/pii/0022283681900875}.
+
+\bibitem[Ukkonen(1985)]{Ukkonen1985}
+Esko Ukkonen.
+\newblock Algorithms for approximate string matching.
+\newblock \emph{Information and Control}, 64\penalty0 (1):\penalty0 100 -- 118,
+  1985.
+\newblock ISSN 0019-9958.
+\newblock \doi{https://doi.org/10.1016/S0019-9958(85)80046-2}.
+\newblock URL
+  \url{http://www.sciencedirect.com/science/article/pii/S0019995885800462}.
+\newblock International Conference on Foundations of Computation Theory.
+
+\bibitem[Šošić i Šikić(2017)]{edlib}
+Martin Šošić i Mile Šikić.
+\newblock Edlib: a c/c ++ library for fast, exact sequence alignment using
+  edit distance.
+\newblock \emph{Bioinformatics}, 33\penalty0 (9):\penalty0 1394--1395, 2017.
+\newblock \doi{10.1093/bioinformatics/btw753}.
+\newblock URL \url{http://dx.doi.org/10.1093/bioinformatics/btw753}.
+
+\end{thebibliography}
