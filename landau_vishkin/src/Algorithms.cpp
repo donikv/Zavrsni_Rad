@@ -326,7 +326,6 @@ int findAlgimentWithLowestKGLOBAL(const std::vector<unsigned char>& R, const std
         // }
         // return k;
         if (k!=-1) { 
-            printf("%d\n", k);
             if(k<mink || mink == -1) {
                 mink = k;
                 if(cigar) {
@@ -335,7 +334,6 @@ int findAlgimentWithLowestKGLOBAL(const std::vector<unsigned char>& R, const std
             }
         } 
     }
-    printf("\n");
     return mink;
 }
 

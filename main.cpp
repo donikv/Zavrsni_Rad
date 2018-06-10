@@ -31,7 +31,7 @@ int main (int argc, char** argv)
     if (global)
         distance = findAlgimentWithLowestKGLOBAL(Rt, Bt, equality, argc==6 ? atoi(argv[5]) : false, cigar);
     else if (infix)
-        distance = findAlgimentWithLowestKINFIX(Rt, Bt, equality);
+        distance = findAlgimentWithLowestKINFIX(Rt, Bt, equality, argc==6 ? atoi(argv[5]) : false, cigar);
     else
         distance = findAlgimentWithLowestKPREFIX(Rt, Bt, equality, argc==6 ? atoi(argv[5]) : false, cigar);
     }
