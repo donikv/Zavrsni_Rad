@@ -1,11 +1,31 @@
-[1m
-NW, query and target of equal size, both short (<= 500bp).[21m
-[4mQuery and target length: 50[24m
-[4mTarget: ./E_coli_DH1/mason_illumina_reads/50bp/e_coli_DH1_illumina_1x50.fasta[24m
+NW, query and target of equal size, both short (<= 500bp).
+Query and target length: 50
+Target: ./E_coli_DH1/mason_illumina_reads/50bp/e_coli_DH1_illumina_1x50.fasta
   Query: ./E_coli_DH1/mason_illumina_reads/50bp/e_coli_DH1_illumina_1x50.fasta
-    => Edlib, 100000 repetition(s): time=[93m0.176451[0ms, score=0
-    => Edlib (path), 10000 repetition(s): time=0.074484s, score=0
-    => LandauVishkin, 100000 repetition(s): time=3.00158133333s, score=0
+    => Edlib, 100000 repetition(s): time=0.177852333333, score=0
+    => Edlib (path), 10000 repetition(s): time=0.0726973333333s, score=0
+    => LandauVishkin, 100000 repetition(s): time=2.93512866667s, score=0
   Query: ./E_coli_DH1/mason_illumina_reads/50bp/mutated_60_perc.fasta
-    => Edlib, 100000 repetition(s): time=[93m0.176466[0ms, score=22
-    => Edlib (path), 10000 repetition(s): time=0.077197s, score=22
+    => Edlib, 100000 repetition(s): time=0.177724, score=22
+    => Edlib (path), 10000 repetition(s): time=0.077724s, score=22
+    => LandauVishkin, 100000 repetition(s): time=266.047118667s, score=22
+  Query: ./E_coli_DH1/mason_illumina_reads/50bp/mutated_70_perc.fasta
+    => Edlib, 100000 repetition(s): time=0.174534666667, score=11
+    => Edlib (path), 10000 repetition(s): time=0.0755243333333s, score=11
+    => LandauVishkin, 100000 repetition(s): time=83.2934373333s, score=11
+  Query: ./E_coli_DH1/mason_illumina_reads/50bp/mutated_80_perc.fasta
+    => Edlib, 100000 repetition(s): time=0.178129666667, score=14
+    => Edlib (path), 10000 repetition(s): time=0.077787s, score=14
+    => LandauVishkin, 100000 repetition(s): time=111.496266s, score=14
+  Query: ./E_coli_DH1/mason_illumina_reads/50bp/mutated_90_perc.fasta
+    => Edlib, 100000 repetition(s): time=0.175220666667, score=4
+    => Edlib (path), 10000 repetition(s): time=0.0772796666667s, score=4
+    => LandauVishkin, 100000 repetition(s): time=17.1930336667s, score=4
+  Query: ./E_coli_DH1/mason_illumina_reads/50bp/mutated_94_perc.fasta
+    => Edlib, 100000 repetition(s): time=0.174860666667, score=4
+    => Edlib (path), 10000 repetition(s): time=0.076617s, score=4
+    => LandauVishkin, 100000 repetition(s): time=19.1902746667s, score=4
+  Query: ./E_coli_DH1/mason_illumina_reads/50bp/mutated_97_perc.fasta
+    => Edlib, 100000 repetition(s): time=0.175919, score=6
+    => Edlib (path), 10000 repetition(s): time=0.0753693333333s, score=6
+    => LandauVishkin, 100000 repetition(s): time=26.925945s, score=6

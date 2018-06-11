@@ -11,6 +11,8 @@ while (defined($line = <>))
     }
     if( $line =~ /=>\s([^,]+),\s(\d+)[^=]+=([^s]*)s,[^=]+=(\d+)/ ){
         print "$prefix,$queryLength,$1,$2,$3,$4\n";
+    } elsif ($line =~ /=>\s([^,]+),\s(\d+)[^=]+=([^,]*),[^=]+=(\d+)/) {
+        print "$prefix,$queryLength,$1,$2,$3,$4\n";
     }
 
 }

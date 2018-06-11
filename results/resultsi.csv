@@ -1,0 +1,25 @@
+Uzorak,m,Algoritam,Broj ponavljanja,Vrijeme,Udaljenost
+50bp/e_coli_DH1_illumina_1x50.fasta,50,Edlib,1,0.0399,0
+50bp/e_coli_DH1_illumina_1x50.fasta,50,Edlib (path),1,0.0428,0
+50bp/e_coli_DH1_illumina_1x50.fasta,50,LandauVishkin,1,2.0580,0
+50bp/mutated_90_perc.fasta,50,Edlib,1,0.0401,2
+50bp/mutated_90_perc.fasta,50,Edlib (path),1,0.0427,2
+50bp/mutated_90_perc.fasta,50,LandauVishkin,1,23.4833,2
+50bp/mutated_94_perc.fasta,50,Edlib,1,0.0402,4
+50bp/mutated_94_perc.fasta,50,Edlib (path),1,0.0426,4
+50bp/mutated_94_perc.fasta,50,LandauVishkin,1,90.2955,4
+50bp/mutated_97_perc.fasta,50,Edlib,1,0.0400,3
+50bp/mutated_97_perc.fasta,50,Edlib (path),1,0.0429,3
+50bp/mutated_97_perc.fasta,50,LandauVishkin,1,50.1223,3
+100bp/e_coli_DH1_illumina_1x100.fasta,100,Edlib,1,0.0612,0
+100bp/e_coli_DH1_illumina_1x100.fasta,100,Edlib (path),1,0.0631,0
+100bp/e_coli_DH1_illumina_1x100.fasta,100,LandauVishkin,1,2.0877,0
+100bp/mutated_90_perc.fasta,100,Edlib,1,0.0547,6
+100bp/mutated_90_perc.fasta,100,Edlib (path),1,0.0565,6
+100bp/mutated_90_perc.fasta,100,LandauVishkin,1,243.8266,6
+100bp/mutated_94_perc.fasta,100,Edlib,1,0.0540,7
+100bp/mutated_94_perc.fasta,100,Edlib (path),1,0.0565,7
+100bp/mutated_94_perc.fasta,100,LandauVishkin,1,356.0862,7
+100bp/mutated_97_perc.fasta,100,Edlib,1,0.0538,3
+100bp/mutated_97_perc.fasta,100,Edlib (path),1,0.0564,3
+100bp/mutated_97_perc.fasta,100,LandauVishkin,1,51.1574,3

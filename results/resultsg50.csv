@@ -1,0 +1,22 @@
+Uzorak,Duljina uzorka,Algoritam,Broj ponavljanja,Vrijeme,Udaljenost
+./E_coli_DH1/mason_illumina_reads/50bp/e_coli_DH1_illumina_1x50.fasta,,Edlib,100000,0.177852333333,0
+./E_coli_DH1/mason_illumina_reads/50bp/e_coli_DH1_illumina_1x50.fasta,,Edlib (path),10000,0.0726973333333,0
+./E_coli_DH1/mason_illumina_reads/50bp/e_coli_DH1_illumina_1x50.fasta,,LandauVishkin,100000,2.93512866667,0
+./E_coli_DH1/mason_illumina_reads/50bp/mutated_60_perc.fasta,,Edlib,100000,0.177724,22
+./E_coli_DH1/mason_illumina_reads/50bp/mutated_60_perc.fasta,,Edlib (path),10000,0.077724,22
+./E_coli_DH1/mason_illumina_reads/50bp/mutated_60_perc.fasta,,LandauVishkin,100000,266.047118667,22
+./E_coli_DH1/mason_illumina_reads/50bp/mutated_70_perc.fasta,,Edlib,100000,0.174534666667,11
+./E_coli_DH1/mason_illumina_reads/50bp/mutated_70_perc.fasta,,Edlib (path),10000,0.0755243333333,11
+./E_coli_DH1/mason_illumina_reads/50bp/mutated_70_perc.fasta,,LandauVishkin,100000,83.2934373333,11
+./E_coli_DH1/mason_illumina_reads/50bp/mutated_80_perc.fasta,,Edlib,100000,0.178129666667,14
+./E_coli_DH1/mason_illumina_reads/50bp/mutated_80_perc.fasta,,Edlib (path),10000,0.077787,14
+./E_coli_DH1/mason_illumina_reads/50bp/mutated_80_perc.fasta,,LandauVishkin,100000,111.496266,14
+./E_coli_DH1/mason_illumina_reads/50bp/mutated_90_perc.fasta,,Edlib,100000,0.175220666667,4
+./E_coli_DH1/mason_illumina_reads/50bp/mutated_90_perc.fasta,,Edlib (path),10000,0.0772796666667,4
+./E_coli_DH1/mason_illumina_reads/50bp/mutated_90_perc.fasta,,LandauVishkin,100000,17.1930336667,4
+./E_coli_DH1/mason_illumina_reads/50bp/mutated_94_perc.fasta,,Edlib,100000,0.174860666667,4
+./E_coli_DH1/mason_illumina_reads/50bp/mutated_94_perc.fasta,,Edlib (path),10000,0.076617,4
+./E_coli_DH1/mason_illumina_reads/50bp/mutated_94_perc.fasta,,LandauVishkin,100000,19.1902746667,4
+./E_coli_DH1/mason_illumina_reads/50bp/mutated_97_perc.fasta,,Edlib,100000,0.175919,6
+./E_coli_DH1/mason_illumina_reads/50bp/mutated_97_perc.fasta,,Edlib (path),10000,0.0753693333333,6
+./E_coli_DH1/mason_illumina_reads/50bp/mutated_97_perc.fasta,,LandauVishkin,100000,26.925945,6
