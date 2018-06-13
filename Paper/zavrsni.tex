@@ -37,7 +37,7 @@
 \begin{document}
 
 % TODO: Navedite broj rada.
-\thesisnumber{000}
+\thesisnumber{5745}
 
 % TODO: Navedite naslov rada.
 \title{Landau-Vishkin-Nussinov algoritam za poravnanje dva niza}
@@ -47,8 +47,6 @@
 
 \maketitle
 
-% Ispis stranice s napomenom o umetanju izvornika rada. Uklonite naredbu \izvornik ako želite izbaciti tu stranicu.
-\izvornik
 
 % Dodavanje zahvale ili prazne stranice. Ako ne želite dodati zahvalu, naredbu ostavite radi prazne stranice.
 \zahvala{}
@@ -103,7 +101,25 @@ Edlib \citep{edlib} je c/c++ implementacija Myersovog bit vektor algoritma \cite
 \section{Definicija problema}
 Generalno, problem koji je potrebno riješiti je efikasno odrediti poravnanja između dva niza \(R = r_{0}r_{1}{\dots}r_{m-1}r_{m}\) i \(B = b_{0}b_{1}{\dots}b_{n-1}b_{n}\), gdje u našem slučaju, abecede sadrže samo znakove $A,C,T,G$. Ovaj problem možemo podijeliti na dva potproblema, a to su pronalaženje najmanje udaljenosti između nizova $R$ i $B$, te pronalaženja točnih transformacija nad nizovima za koji se taj minimum postiže. Taj problem još se naziva problem traženja optimalnog puta za neko poravnanje. 
 
-Razlikujemo tri vrste poravnanja, globalno, prefiksno i infiksno. Globalno poravnanje je poravnanje kod kojega se svaka razlika između dva niza ubraja u konačnu udaljenost. Za razliku od toga, kod prefiksnog i infiksnog algoritma, prilikom izračunavanja udaljenosti zanemarujemo razlike uzorka $R$ i teksta $B$ na početku ili na kraju teksta. Tako, kod prefiksnog algoritma u rezultat ulaze samo cijene transformacija koje dobivamo dok nismo došli do kraja uzorka $R$. Infiksno poravnanje slično je prefiksnom samo što dopuštamo zanemrivanje cijena i s početka teksta $B$, drugim riječima, dopuštamo da poravnanje uzorka ne počinje od prve pozicije teksta $B$. Demonstrirajmo to na primjeru uzorka $R = AGCGCTTGCTGC$ i teksta $B = AGTCGCCGCTGCTGC$. Rezultati ove tri vrste poravananja dani su na slijedećoj slici.
+Razlikujemo tri vrste poravnanja, globalno, prefiksno i infiksno. Globalno poravnanje je poravnanje kod kojega se svaka razlika između dva niza ubraja u konačnu udaljenost. Za razliku od toga, kod prefiksnog i infiksnog algoritma, prilikom izračunavanja udaljenosti zanemarujemo razlike uzorka $R$ i teksta $B$ na početku ili na kraju teksta. Tako, kod prefiksnog algoritma u rezultat ulaze samo cijene transformacija koje dobivamo dok nismo došli do kraja uzorka $R$. Infiksno poravnanje slično je prefiksnom samo što dopuštamo zanemrivanje cijena i s početka teksta $B$, drugim riječima, dopuštamo da poravnanje uzorka ne počinje od prve pozicije teksta $B$. Demonstrirajmo to na primjeru uzorka $R = AGCGCTTGCTGC$ i teksta $B = AGTCGCCGCTGCTGCA$. Primjeri za ove tri vrste poravananja dani su na slijedećim slikama (Slika \ref{fig:globalExample}, Slika \ref{fig:prefixExample} i Slika \ref{fig:infixExample1}).
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=120mm]{global_example.jpeg}
+\caption{Primjer globalnog poravnanja između uzokra $R = AGCGCTTGCTGC$ i podniza teksta $B = AGTCGCCGCTGCA $}\label{fig:globalExample}
+\end{figure}
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=120mm]{prefix_example.jpeg}
+\caption{Primjer prefiksnog poravnanja između uzokra $R = AGCGCTTGCTGC$ i podniza teksta $B = AGTCGCCGCTGCA $}\label{fig:prefixExample}
+\end{figure}
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=120mm]{infix_example.jpeg}
+\caption{Primjer infiksnog poravnanja između uzokra $R = AGCGCTTGCTGC$ i podniza teksta $B = AGTCGCCGCTGCA $}\label{fig:infixExample1}
+\end{figure}
 
 \subsection{Pronalaženje minimalne udaljenosti}
 \label{subsec:osnovniAlgoritam}
@@ -172,7 +188,7 @@ L_{d+1,e-1} + 1\\
 \end{cases}\\
 L_{d,e} = row + i \text{, za } i \text{ td. } \forall a, a\leq i, r_{row+1+a}=b_{row+d+1+a}
 \end{gather*}
-Varijablu $row$ za dijagonalu $d$ inicijaliziramo kao maksimum od vrijednosti udaljenosti na tri dijagonale s koje smo mogli doći na dijagonalu $d$, a to su dijagonala $d-1$ (ako se mičemo po istom redu), $d$ (ako se mičemo po dijagonali) i $d+1$ (ako se mičemo po istom stupcu). U slučajevima kada se mičemo po istom stupcu ili po dijagonali, dodajemo 1 na prošlu vrijednost, jer se takvim micanjem trenutni redak povećava za 1, odnosno micanjem po retku nismo napredovali u novi redak, te zato ne dodajemo 1. 
+Varijablu $row$ za dijagonalu $d$ inicijaliziramo kao maksimum od vrijednosti udaljenosti na tri dijagonale s koje smo mogli doći na dijagonalu $d$, a to su dijagonala $d-1$ (ako se mičemo po istom redu), $d$ (ako se mičemo po dijagonali) i $d+1$ (ako se mičemo po istom stupcu). U slučajevima kada se mičemo po istom stupcu ili po dijagonali, dodajemo 1 na prošlu vrijednost, jer se takvim micanjem trenutni redak povećava za 1, odnosno micanjem po retku nismo napredovali u novi redak, te zato ne dodajemo 1. Ovo objašnjenje algoritma preuzeto je iz orginalnog rada \cite{Landau1986}. 
 
 \begin{algorithm}
 \caption{Algoritam za izračunavanje prefiksne udaljenosti dva niza s najviše $k$ razlika}\label{alg:prefix}
@@ -277,7 +293,8 @@ Uzmimo na primjer niz $R = ACTACTTTCCGAG$ i tekst $B = b_{0}\dots b_{17}\dots b_
 \caption{Poklapanje između uzokra $R = ACTACTTTCCGAG$ i podniza teksta $B = b_{17}\dots b_{30} = \dots AGCTACTTGTCCAG \dots$}\label{fig:infixExample}
 \end{figure}
 
-Udaljenost između ta dva niza je $k=3$. Iz toga slijedi da je udaljenost nekog podniza uzorka $R$ i podniza teksta $b_{i+1}\dots b_{j}$ sigurno $\leq k$. U prethodnom primjeru, za podniz uzorka $r_{4}\dots r_{13}$, postoji barem $30-20-3$ ($j-i-k$) znakova koji se poklapaju s podnizom teksta $b_{21}\dots b_{30}$. Podniz uzorka možemo podijeliti na najviše $k+1$ uzastopnih podnizova, takvih da se svaki od tih podnizova u potpunosti poklapa s podnizom teksta, odnosno podniz dobivamo ako niz podijelimo na mjestima gdje se uzorak i tekst razlikuju. Uvedimo sada trojku $(p,c,f)$, gdje $p$ označava poziciju u tekstu, $c$ označava poziciju u uzorku te $f$ označava duljinu poklapanja. Ako se podniz teksta $b_{p+1}\dots b_{p+f}$ poklapa s podnizom uzorka $r_{c+1}\dots r_{c+f}$, te ako je $r_{c+f+1}\neq b_{p+f+1}$, tada ćemo to poklapanje zapisati prethodno definiranom trojkom $(p,c,f)$ (u primjeru, jedna od trojki je $(18,1,6)$). Isto tako, znakove podniza teksta $b_{i+1}\dots b_{j}$ za koje ne postoji poklapanje, možemo označiti trojkom $(h,0,0)$, gdje $h$ označava poziciju unutar teksta $B$, a $0$ označava da u uzorku ne postoji znak koji odgovara znaku u tekstu (u primjeru, $(17,0,0)$). Primjenom ovakve analize na podniz teksta $b_{i+1}\dots b_{j}$, podniz možemo podijeliti na $O(k)$ slijednih poklapanja i promašaja. Za podniz u primjeru to prikazujemo podnizom $(20,3,4),(24,0,0),(25,7,3),(28,11,2)$. Ovaj niz trojki označit ćemo sa $S_{20,30}$ (općenito $S_{i,j}$, gdje $i$ označava trenutnu iteraciju, a $j$ označava najdalju poziciju koju smo dosegli u tekstu).
+%TODO dodati citaciju tu
+Udaljenost između ta dva niza je $k=3$. Iz toga slijedi da je udaljenost nekog podniza uzorka $R$ i podniza teksta $b_{i+1}\dots b_{j}$ sigurno $\leq k$. U prethodnom primjeru, za podniz uzorka $r_{4}\dots r_{13}$, postoji barem $30-20-3$ ($j-i-k$) znakova koji se poklapaju s podnizom teksta $b_{21}\dots b_{30}$. Podniz uzorka možemo podijeliti na najviše $k+1$ uzastopnih podnizova, takvih da se svaki od tih podnizova u potpunosti poklapa s podnizom teksta, odnosno podniz dobivamo ako niz podijelimo na mjestima gdje se uzorak i tekst razlikuju. Uvedimo sada trojku $(p,c,f)$, gdje $p$ označava poziciju u tekstu, $c$ označava poziciju u uzorku te $f$ označava duljinu poklapanja. Ako se podniz teksta $b_{p+1}\dots b_{p+f}$ poklapa s podnizom uzorka $r_{c+1}\dots r_{c+f}$, te ako je $r_{c+f+1}\neq b_{p+f+1}$, tada ćemo to poklapanje zapisati prethodno definiranom trojkom $(p,c,f)$ (u primjeru, jedna od trojki je $(18,1,6)$). Isto tako, znakove podniza teksta $b_{i+1}\dots b_{j}$ za koje ne postoji poklapanje, možemo označiti trojkom $(h,0,0)$, gdje $h$ označava poziciju unutar teksta $B$, a $0$ označava da u uzorku ne postoji znak koji odgovara znaku u tekstu (u primjeru, $(17,0,0)$). Primjenom ovakve analize na podniz teksta $b_{i+1}\dots b_{j}$, podniz možemo podijeliti na $O(k)$ slijednih poklapanja i promašaja. Za podniz u primjeru to prikazujemo podnizom $(20,3,4),(24,0,0),(25,7,3),(28,11,2)$. Ovaj niz trojki označit ćemo sa $S_{20,30}$ (općenito $S_{i,j}$, gdje $i$ označava trenutnu iteraciju, a $j$ označava najdalju poziciju koju smo dosegli u tekstu). Ovaj primjer direktno je preuzet iz orginalnog rada \cite{Landau1986}.
 
 \subsection{Detaljan opis algoritma}
 Jedna iteracija algoritma bazira se na prefiksnom algoritmu opisanom u poglavlju \ref{sec:prefiksniAlg} s time da prilikom pomicanja po uzorku koristimo matricu $MAXLENGTH$ (\ref{tab:maxlength}) te niz trojki $S_{i,j}$ dobiven iz prethodne iteracije kako bi postigli ubrzanje. U jednoj iteraciji, koristit ćemo bazu prefiksnog algoritma (\ref{alg:prefix}), no uz zamjenu instrukcije [3] s novim nizom instrukcija. Umjesto da varijablu $row$ povećavamo za jedan u svakom prolazu, koristi ćemo se znanjem prethodne iteracije i matricom $MAXLENGTH$ kako bi varijablu $row$ povećali za veće iznose.
@@ -593,7 +610,9 @@ if (useLV) {
 Algoritam Landau-Vishkin-Nussinov dijeli se na dva algoritma, jedan za određivanje prefiksne udaljenosti nizova, a drugi za određivanje infiksne udaljenosti nizova, dokle god je ta udaljenost manja od $k$. Uvođenjem tog ograničenja na rezultat, vremenska složenost prefiksnog algoritma postaje $O(km)$, a infiksnog algoritma $O(k^2n)$, gdje je $m$ duljina uzorka, a $n$ duljina teksta. Iz toga možemo zaključiti da će ovakav algoritam imati najveće ubrzanje za kratke nizove, s relativno malim brojem razlika između njih.
 
 \section{Usporedba s edlibom}
-Brzina implementacije opisane u ovom radu testirana je u ovisnosti o alatu edlib. Testiranje je provedeno s jednim tekstom i nizom različitih uzoraka. Niz koji je korišten kao tekst bio je zapis genoma bakterije \textit{Escherichie coli}. Duljina teksta $n$ iznosila je oko 5 milijuna proteinskih baza, dok su duljine korištenih uzoraka varirale su od 50 do 500 proteinskih baza. Nizovi su bili zapisani u FASTA formatu (\cite{FASTA}) te je za njihovo učitavanje korišten jednostavni parser koji u linearnom vremenu učitava niz u memoriju. Vrijeme potrebno za učitavanje nizova također je ulazilo u vrijeme koje je testirano. U tablicama \ref{tab:resultsPrefix50}, \ref{tab:resultsPrefix100}, \ref{tab:resultsPrefix250} i \ref{tab:resultsPrefix500} prikazani su rezultati testiranja naše implementacije i edliba. Prvi stupac tablice određuje uzorak na kojem je testiranje provedeno, a drugi stupac prikazuje duljinu uzorka. U trećem stupcu nalazi se vrsta algoritma koji je korišten, gdje Edlib označava obično traženje udaljenosti, Edlib (path) označava traženje poravnanja i optimalnog puta, dok LandauVishkin označava korištenje naše implementacije. Sljedeći stupac prikazuje prosječno vrijeme trajanja algoritma u sekundama za 100 ponavljanja, dok se u zadnjem stupcu nalazi prefiksna udaljenost uzorka i teksta. Vidljivo je da je naša implementacija na nekim, a pogotovo na vrlo kratkim primjerima brža i za više od 100 puta od edliba. Takvi rezultati su očekivani s obzirom na to da je algoritam Landau-Vishkin-Nussinov pogodan za kratke, slične nizove, dok edlib najveće ubrzanje dobiva kod dugačkih, sličnih nizova. Usporedba edliba s drugim algoritmima dana je u radu \cite{edlib}.
+Brzina implementacije opisane u ovom radu testirana je u ovisnosti o alatu edlib. Testiranje je provedeno s jednim tekstom i nizom različitih uzoraka. Niz koji je korišten kao tekst bio je zapis genoma bakterije \textit{Escherichie coli}. Duljina teksta $n$ iznosila je oko 5 milijuna proteinskih baza, dok su duljine korištenih uzoraka varirale su od 50 do 500 proteinskih baza. Nizovi su bili zapisani u FASTA formatu (\cite{FASTA}) te je za njihovo učitavanje korišten jednostavni parser koji u linearnom vremenu učitava niz u memoriju. Vrijeme potrebno za učitavanje nizova također je ulazilo u vrijeme koje je testirano.
+\subsection{Prefiksni algoritam}
+U tablicama \ref{tab:resultsPrefix50}, \ref{tab:resultsPrefix100}, \ref{tab:resultsPrefix250} i \ref{tab:resultsPrefix500} prikazani su rezultati testiranja naše implementacije i edliba. Prvi stupac tablice određuje uzorak na kojem je testiranje provedeno, a drugi stupac prikazuje duljinu uzorka. U trećem stupcu nalazi se vrsta algoritma koji je korišten, gdje Edlib označava obično traženje udaljenosti, Edlib (path) označava traženje poravnanja i optimalnog puta, dok LandauVishkin označava korištenje naše implementacije. Sljedeći stupac prikazuje prosječno vrijeme trajanja algoritma u sekundama za 100 ponavljanja, dok se u zadnjem stupcu nalazi prefiksna udaljenost uzorka i teksta. Vidljivo je da je naša implementacija na nekim, a pogotovo na vrlo kratkim primjerima brža i za više od 100 puta od edliba. Takvi rezultati su očekivani s obzirom na to da je algoritam Landau-Vishkin-Nussinov pogodan za kratke, slične nizove, dok edlib najveće ubrzanje dobiva kod dugačkih, sličnih nizova. Usporedba edliba s drugim algoritmima dana je u radu \cite{edlib}.
 
 \begin{table}[]
 \centering
@@ -717,6 +736,43 @@ Brzina implementacije opisane u ovom radu testirana je u ovisnosti o alatu edlib
 \end{tabular}
 \caption{Tablica koja prikazuje rezultate testiranja implementacije prefiksnog algoritma Landau-Vishkin-Nussinov i alata edlib na uzorcima duljine 500 proteinskih baza. Podebljano su označeni redci u kojima je algoritam Landau-Vishkin-Nussinov sporiji od edliba.}
 \label{tab:resultsPrefix500}
+\end{table}
+
+\subsection{Infiksni algoritam}
+U tablici \ref{tab:resultsInfix50} dani su rezultati usporedbe implementacije infiksnog algoritma i alata edlib. Prvi stupac tablice određuje uzorak na kojem je testiranje provedeno, a drugi stupac prikazuje duljinu uzorka. U trećem stupcu nalazi se vrsta algoritma koji je korišten, gdje Edlib označava obično traženje udaljenosti, Edlib (path) označava traženje poravnanja i optimalnog puta, dok LandauVishkin označava korištenje naše implementacije. Sljedeći stupac prikazuje prosječno vrijeme izvođenja algoritma u sekundama, dok se u zadnjem stupcu nalazi prefiksna udaljenost uzorka i teksta $d$. Vidljivo je da vrijeme izvođenja algoritma Landau-Vishkin-Nussinov puno duže od edliba. Do toliko loših rezultata dolazi zbog toga što vremenska složenost infiksnog algoritma iznosi $O(k^2n)$, a $n$ za tekst na kojem je algoritam testiran iznosi oko pet milijuna. Još jedan od problema je taj što ne poznajemo vrijednost konstante $k$ te zbog toga moramo isprobati sve moguće vrijednosti $k\leq m$, što nam vremensku složenost pretvara u $O(mk^2n)$. Iz toga je vidljivo da će infiksni algoritam Landau-Viskin-Nussinov raditi brzo za slične, kratke nizove.
+
+\begin{table}[]
+\centering
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+\multicolumn{1}{|c|}{Uzorak} & \multicolumn{1}{c|}{m} & \multicolumn{1}{c|}{Algoritam} & \multicolumn{1}{c|}{Vrijeme} & \multicolumn{1}{c|}{d} \\ \hline
+50bp/e\_coli\_DH1\_illumina\_1x50.fasta & 50 & Edlib & 0.0399 & 0 \\ \hline
+50bp/e\_coli\_DH1\_illumina\_1x50.fasta & 50 & Edlib (path) & 0.0428 & 0 \\ \hline
+50bp/e\_coli\_DH1\_illumina\_1x50.fasta & 50 & LandauVishkin & 2.0580 & 0 \\ \hline
+50bp/mutated\_90\_perc.fasta & 50 & Edlib & 0.0401 & 2 \\ \hline
+50bp/mutated\_90\_perc.fasta & 50 & Edlib (path) & 0.0427 & 2 \\ \hline
+50bp/mutated\_90\_perc.fasta & 50 & LandauVishkin & 23.4833 & 2 \\ \hline
+50bp/mutated\_94\_perc.fasta & 50 & Edlib & 0.0402 & 4 \\ \hline
+50bp/mutated\_94\_perc.fasta & 50 & Edlib (path) & 0.0426 & 4 \\ \hline
+50bp/mutated\_94\_perc.fasta & 50 & LandauVishkin & 90.2955 & 4 \\ \hline
+50bp/mutated\_97\_perc.fasta & 50 & Edlib & 0.0400 & 3 \\ \hline
+50bp/mutated\_97\_perc.fasta & 50 & Edlib (path) & 0.0429 & 3 \\ \hline
+50bp/mutated\_97\_perc.fasta & 50 & LandauVishkin & 50.1223 & 3 \\ \hline
+100bp/e\_coli\_DH1\_illumina\_1x100.fasta & 100 & Edlib & 0.0612 & 0 \\ \hline
+100bp/e\_coli\_DH1\_illumina\_1x100.fasta & 100 & Edlib (path) & 0.0631 & 0 \\ \hline
+100bp/e\_coli\_DH1\_illumina\_1x100.fasta & 100 & LandauVishkin & 2.0877 & 0 \\ \hline
+100bp/mutated\_90\_perc.fasta & 100 & Edlib & 0.0547 & 6 \\ \hline
+100bp/mutated\_90\_perc.fasta & 100 & Edlib (path) & 0.0565 & 6 \\ \hline
+100bp/mutated\_90\_perc.fasta & 100 & LandauVishkin & 243.8266 & 6 \\ \hline
+100bp/mutated\_94\_perc.fasta & 100 & Edlib & 0.0540 & 7 \\ \hline
+100bp/mutated\_94\_perc.fasta & 100 & Edlib (path) & 0.0565 & 7 \\ \hline
+100bp/mutated\_94\_perc.fasta & 100 & LandauVishkin & 356.0862 & 7 \\ \hline
+100bp/mutated\_97\_perc.fasta & 100 & Edlib & 0.0538 & 3 \\ \hline
+100bp/mutated\_97\_perc.fasta & 100 & Edlib (path) & 0.0564 & 3 \\ \hline
+100bp/mutated\_97\_perc.fasta & 100 & LandauVishkin & 51.1574 & 3 \\ \hline
+\end{tabular}
+\caption{Tablica koja prikazuje rezultate testiranja implementacije infiksnog algoritma Landau-Vishkin-Nussinov i alata edlib na uzorcima duljine 50 i 100 proteinskih baza.}
+\label{tab:resultsInfix50}
 \end{table}
 
 \chapter{Zaključak}
