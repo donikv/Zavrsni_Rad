@@ -9,27 +9,29 @@
 \contentsline {chapter}{\numberline {3}Algoritam Landau-Vishkin-Nussinov}{6}{chapter.3}
 \contentsline {section}{\numberline {3.1}Definicija problema}{6}{section.3.1}
 \contentsline {subsection}{\numberline {3.1.1}Pronala\IeC {\v z}enje minimalne udaljenosti}{6}{subsection.3.1.1}
-\contentsline {subsection}{\numberline {3.1.2}Pronala\IeC {\v z}enje optimalnog puta}{7}{subsection.3.1.2}
-\contentsline {section}{\numberline {3.2}Prefiksni algoritam}{9}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}Teorijska pozadina}{9}{subsection.3.2.1}
-\contentsline {subsection}{\numberline {3.2.2}Obja\IeC {\v s}njenje algoritma}{10}{subsection.3.2.2}
-\contentsline {section}{\numberline {3.3}Infiksni algoritam}{12}{section.3.3}
-\contentsline {subsection}{\numberline {3.3.1}Teorijska pozadina}{12}{subsection.3.3.1}
-\contentsline {subsection}{\numberline {3.3.2}Primjer izvo\IeC {\dj }enja}{13}{subsection.3.3.2}
-\contentsline {subsection}{\numberline {3.3.3}Detaljan opis algoritma}{14}{subsection.3.3.3}
-\contentsline {subsection}{\numberline {3.3.4}Vremenska slo\IeC {\v z}enost infiksnog algoritma}{18}{subsection.3.3.4}
-\contentsline {chapter}{\numberline {4}Implementacija}{19}{chapter.4}
-\contentsline {section}{\numberline {4.1}Prefiksni algoritam}{19}{section.4.1}
-\contentsline {subsection}{\numberline {4.1.1}Inicijalizacija vrijednosti}{20}{subsection.4.1.1}
-\contentsline {subsection}{\numberline {4.1.2}Odabir vrijednosti varijable $row$}{20}{subsection.4.1.2}
-\contentsline {subsection}{\numberline {4.1.3}Napredovanje po dijagonali}{21}{subsection.4.1.3}
-\contentsline {subsection}{\numberline {4.1.4}Kraj algoritma}{22}{subsection.4.1.4}
-\contentsline {section}{\numberline {4.2}Infiksni algoritam}{22}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Optimizirano napredovanje po dijagonali}{23}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}Stvaranje novog niza trojki za trenutni $L_{d,e}$}{24}{subsection.4.2.2}
-\contentsline {subsection}{\numberline {4.2.3}Obabir novog niza $S_{i,j}$}{25}{subsection.4.2.3}
-\contentsline {section}{\numberline {4.3}Ugradnja u edlib}{26}{section.4.3}
-\contentsline {chapter}{\numberline {5}Rezultati}{28}{chapter.5}
-\contentsline {section}{\numberline {5.1}Usporedba s edlibom}{28}{section.5.1}
-\contentsline {chapter}{\numberline {6}Zaklju\IeC {\v c}ak}{33}{chapter.6}
-\contentsline {chapter}{Literatura}{35}{chapter*.10}
+\contentsline {subsection}{\numberline {3.1.2}Pronala\IeC {\v z}enje optimalnog puta}{8}{subsection.3.1.2}
+\contentsline {section}{\numberline {3.2}Prefiksni algoritam}{10}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Teorijska pozadina}{10}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Obja\IeC {\v s}njenje algoritma}{11}{subsection.3.2.2}
+\contentsline {section}{\numberline {3.3}Infiksni algoritam}{13}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Teorijska pozadina}{13}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}Primjer izvo\IeC {\dj }enja}{14}{subsection.3.3.2}
+\contentsline {subsection}{\numberline {3.3.3}Detaljan opis algoritma}{15}{subsection.3.3.3}
+\contentsline {subsection}{\numberline {3.3.4}Vremenska slo\IeC {\v z}enost infiksnog algoritma}{19}{subsection.3.3.4}
+\contentsline {chapter}{\numberline {4}Implementacija}{20}{chapter.4}
+\contentsline {section}{\numberline {4.1}Prefiksni algoritam}{20}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}Inicijalizacija vrijednosti}{21}{subsection.4.1.1}
+\contentsline {subsection}{\numberline {4.1.2}Odabir vrijednosti varijable $row$}{21}{subsection.4.1.2}
+\contentsline {subsection}{\numberline {4.1.3}Napredovanje po dijagonali}{22}{subsection.4.1.3}
+\contentsline {subsection}{\numberline {4.1.4}Kraj algoritma}{23}{subsection.4.1.4}
+\contentsline {section}{\numberline {4.2}Infiksni algoritam}{23}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Optimizirano napredovanje po dijagonali}{24}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Stvaranje novog niza trojki za trenutni $L_{d,e}$}{25}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.2.3}Obabir novog niza $S_{i,j}$}{26}{subsection.4.2.3}
+\contentsline {section}{\numberline {4.3}Ugradnja u edlib}{27}{section.4.3}
+\contentsline {chapter}{\numberline {5}Rezultati}{29}{chapter.5}
+\contentsline {section}{\numberline {5.1}Usporedba s edlibom}{29}{section.5.1}
+\contentsline {subsection}{\numberline {5.1.1}Prefiksni algoritam}{29}{subsection.5.1.1}
+\contentsline {subsection}{\numberline {5.1.2}Infiksni algoritam}{30}{subsection.5.1.2}
+\contentsline {chapter}{\numberline {6}Zaklju\IeC {\v c}ak}{36}{chapter.6}
+\contentsline {chapter}{Literatura}{38}{chapter*.14}

@@ -49,69 +49,81 @@
 \@writefile{toc}{\contentsline {section}{\numberline {3.1}Definicija problema}{6}{section.3.1}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.1.1}Pronala\IeC {\v z}enje minimalne udaljenosti}{6}{subsection.3.1.1}}
 \newlabel{subsec:osnovniAlgoritam}{{3.1.1}{6}{Pronalaženje minimalne udaljenosti}{subsection.3.1.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.2}Pronala\IeC {\v z}enje optimalnog puta}{7}{subsection.3.1.2}}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Osnovni algoritam za izra\IeC {\v c}unavanje udaljenosti dva niza\relax }}{8}{algorithm.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces Primjer globalnog poravnanja izme\IeC {\dj }u uzokra $R = AGCGCTTGCTGC$ i podniza teksta $B = AGTCGCCGCTGCA $\relax }}{7}{figure.caption.2}}
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:globalExample}{{3.1}{7}{Primjer globalnog poravnanja između uzokra $R = AGCGCTTGCTGC$ i podniza teksta $B = AGTCGCCGCTGCA $\relax }{figure.caption.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces Primjer prefiksnog poravnanja izme\IeC {\dj }u uzokra $R = AGCGCTTGCTGC$ i podniza teksta $B = AGTCGCCGCTGCA $\relax }}{7}{figure.caption.3}}
+\newlabel{fig:prefixExample}{{3.2}{7}{Primjer prefiksnog poravnanja između uzokra $R = AGCGCTTGCTGC$ i podniza teksta $B = AGTCGCCGCTGCA $\relax }{figure.caption.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces Primjer infiksnog poravnanja izme\IeC {\dj }u uzokra $R = AGCGCTTGCTGC$ i podniza teksta $B = AGTCGCCGCTGCA $\relax }}{7}{figure.caption.4}}
+\newlabel{fig:infixExample1}{{3.3}{7}{Primjer infiksnog poravnanja između uzokra $R = AGCGCTTGCTGC$ i podniza teksta $B = AGTCGCCGCTGCA $\relax }{figure.caption.4}{}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Osnovni algoritam za izra\IeC {\v c}unavanje udaljenosti dva niza\relax }}{8}{algorithm.1}}
 \newlabel{alg:osnovni}{{1}{8}{Osnovni algoritam za izračunavanje udaljenosti dva niza\relax }{algorithm.1}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {3.1}{\ignorespaces Matrica $D_{ij}$ prikazuje udaljenosti izra\IeC {\v c}unate osnovnim algoritmom (\ref  {alg:osnovni}), za nizove $R = ACTAGAATGGCT$ i $B = CCATACTGAACTGACTAAC$. Vremenska slo\IeC {\v z}enost ovakvog pristupa je \textit  {O}(\textit  {nm}). Podebljani elementi prikazuju jedan od mogu\IeC {\'c}ih puteva do optimalnog rje\IeC {\v s}enja.\relax }}{8}{table.caption.2}}
-\newlabel{tab:matricaDij}{{3.1}{8}{Matrica $D_{ij}$ prikazuje udaljenosti izračunate osnovnim algoritmom (\ref {alg:osnovni}), za nizove $R = ACTAGAATGGCT$ i $B = CCATACTGAACTGACTAAC$. Vremenska složenost ovakvog pristupa je \textit {O}(\textit {nm}). Podebljani elementi prikazuju jedan od mogućih puteva do optimalnog rješenja.\relax }{table.caption.2}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.2}Prefiksni algoritam}{9}{section.3.2}}
-\newlabel{sec:prefiksniAlg}{{3.2}{9}{Prefiksni algoritam}{section.3.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.1}Teorijska pozadina}{9}{subsection.3.2.1}}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {2}{\ignorespaces Algoritam za izra\IeC {\v c}unavanje prefiksne udaljenosti dva niza s najvi\IeC {\v s}e $k$ razlika\relax }}{10}{algorithm.2}}
-\newlabel{alg:prefix}{{2}{10}{Algoritam za izračunavanje prefiksne udaljenosti dva niza s najviše $k$ razlika\relax }{algorithm.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.2}Obja\IeC {\v s}njenje algoritma}{10}{subsection.3.2.2}}
-\@writefile{lot}{\contentsline {table}{\numberline {3.2}{\ignorespaces Matrica $D_{i,j}$ koja se dobije primjenom prefiksnog algoritma s maksimalnom udaljenosti $k=3$. Vidljivo je da je znatno manji dio matrice istra\IeC {\v z}en s obzirom na matricu dobivenu primjenom osnovnog algoritma (\ref  {tab:matricaDij}). Va\IeC {\v z}no je napomenuti da se prilikom izvo\IeC {\dj }enja algoritma ovakva matrica ne sprema nigdje, ve\IeC {\'c} je dovoljno spremiti vrijednosti $L_{d,e}$.\relax }}{11}{table.caption.3}}
-\newlabel{tab:matricaAlg2}{{3.2}{11}{Matrica $D_{i,j}$ koja se dobije primjenom prefiksnog algoritma s maksimalnom udaljenosti $k=3$. Vidljivo je da je znatno manji dio matrice istražen s obzirom na matricu dobivenu primjenom osnovnog algoritma (\ref {tab:matricaDij}). Važno je napomenuti da se prilikom izvođenja algoritma ovakva matrica ne sprema nigdje, već je dovoljno spremiti vrijednosti $L_{d,e}$.\relax }{table.caption.3}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {3.3}{\ignorespaces MAXLENGTH matrica za uzorak $R = AGCGCTTGCTGC$. Primjetimo da je matrica simetri\IeC {\v c}na, to jest da $MAXLENGTH(i,j)= MAXLENGTH(j,i)$.\relax }}{12}{table.caption.4}}
-\newlabel{tab:maxlength}{{3.3}{12}{MAXLENGTH matrica za uzorak $R = AGCGCTTGCTGC$. Primjetimo da je matrica simetrična, to jest da $MAXLENGTH(i,j)= MAXLENGTH(j,i)$.\relax }{table.caption.4}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.3}Infiksni algoritam}{12}{section.3.3}}
-\newlabel{sec:infiksniAlg}{{3.3}{12}{Infiksni algoritam}{section.3.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.1}Teorijska pozadina}{12}{subsection.3.3.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.2}Primjer izvo\IeC {\dj }enja}{13}{subsection.3.3.2}}
-\newlabel{primjer}{{3.3.2}{13}{Primjer izvođenja}{subsection.3.3.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces Poklapanje izme\IeC {\dj }u uzokra $R = ACTACTTTCCGAG$ i podniza teksta $B = b_{17}\dots  b_{30} = \dots  AGCTACTTGTCCAG \dots  $\relax }}{13}{figure.caption.5}}
-\newlabel{fig:infixExample}{{3.1}{13}{Poklapanje između uzokra $R = ACTACTTTCCGAG$ i podniza teksta $B = b_{17}\dots b_{30} = \dots AGCTACTTGTCCAG \dots $\relax }{figure.caption.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.3}Detaljan opis algoritma}{14}{subsection.3.3.3}}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {3}{\ignorespaces Algoritam za izra\IeC {\v c}unavanje infiksne udaljenosti dva niza s najvi\IeC {\v s}e $k$ razlika\relax }}{15}{algorithm.3}}
-\newlabel{alg:infix}{{3}{15}{Algoritam za izračunavanje infiksne udaljenosti dva niza s najviše $k$ razlika\relax }{algorithm.3}{}}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {4}{\ignorespaces Nove istrukcije koje omogu\IeC {\'c}uju ubrzanje infiksnog algoritma\relax }}{16}{algorithm.4}}
-\newlabel{alg:infixNew}{{4}{16}{Nove istrukcije koje omogućuju ubrzanje infiksnog algoritma\relax }{algorithm.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.4}Vremenska slo\IeC {\v z}enost infiksnog algoritma}{18}{subsection.3.3.4}}
-\newlabel{ssec:slozenostInfix}{{3.3.4}{18}{Vremenska složenost infiksnog algoritma}{subsection.3.3.4}{}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {4}Implementacija}{19}{chapter.4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.2}Pronala\IeC {\v z}enje optimalnog puta}{8}{subsection.3.1.2}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.1}{\ignorespaces Matrica $D_{ij}$ prikazuje udaljenosti izra\IeC {\v c}unate osnovnim algoritmom (\ref  {alg:osnovni}), za nizove $R = ACTAGAATGGCT$ i $B = CCATACTGAACTGACTAAC$. Vremenska slo\IeC {\v z}enost ovakvog pristupa je \textit  {O}(\textit  {nm}). Podebljani elementi prikazuju jedan od mogu\IeC {\'c}ih puteva do optimalnog rje\IeC {\v s}enja.\relax }}{9}{table.caption.5}}
+\newlabel{tab:matricaDij}{{3.1}{9}{Matrica $D_{ij}$ prikazuje udaljenosti izračunate osnovnim algoritmom (\ref {alg:osnovni}), za nizove $R = ACTAGAATGGCT$ i $B = CCATACTGAACTGACTAAC$. Vremenska složenost ovakvog pristupa je \textit {O}(\textit {nm}). Podebljani elementi prikazuju jedan od mogućih puteva do optimalnog rješenja.\relax }{table.caption.5}{}}
+\citation{Landau1986}
+\@writefile{toc}{\contentsline {section}{\numberline {3.2}Prefiksni algoritam}{10}{section.3.2}}
+\newlabel{sec:prefiksniAlg}{{3.2}{10}{Prefiksni algoritam}{section.3.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.1}Teorijska pozadina}{10}{subsection.3.2.1}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {2}{\ignorespaces Algoritam za izra\IeC {\v c}unavanje prefiksne udaljenosti dva niza s najvi\IeC {\v s}e $k$ razlika\relax }}{11}{algorithm.2}}
+\newlabel{alg:prefix}{{2}{11}{Algoritam za izračunavanje prefiksne udaljenosti dva niza s najviše $k$ razlika\relax }{algorithm.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.2}Obja\IeC {\v s}njenje algoritma}{11}{subsection.3.2.2}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.2}{\ignorespaces Matrica $D_{i,j}$ koja se dobije primjenom prefiksnog algoritma s maksimalnom udaljenosti $k=3$. Vidljivo je da je znatno manji dio matrice istra\IeC {\v z}en s obzirom na matricu dobivenu primjenom osnovnog algoritma (\ref  {tab:matricaDij}). Va\IeC {\v z}no je napomenuti da se prilikom izvo\IeC {\dj }enja algoritma ovakva matrica ne sprema nigdje, ve\IeC {\'c} je dovoljno spremiti vrijednosti $L_{d,e}$.\relax }}{12}{table.caption.6}}
+\newlabel{tab:matricaAlg2}{{3.2}{12}{Matrica $D_{i,j}$ koja se dobije primjenom prefiksnog algoritma s maksimalnom udaljenosti $k=3$. Vidljivo je da je znatno manji dio matrice istražen s obzirom na matricu dobivenu primjenom osnovnog algoritma (\ref {tab:matricaDij}). Važno je napomenuti da se prilikom izvođenja algoritma ovakva matrica ne sprema nigdje, već je dovoljno spremiti vrijednosti $L_{d,e}$.\relax }{table.caption.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.3}{\ignorespaces MAXLENGTH matrica za uzorak $R = AGCGCTTGCTGC$. Primjetimo da je matrica simetri\IeC {\v c}na, to jest da $MAXLENGTH(i,j)= MAXLENGTH(j,i)$.\relax }}{13}{table.caption.7}}
+\newlabel{tab:maxlength}{{3.3}{13}{MAXLENGTH matrica za uzorak $R = AGCGCTTGCTGC$. Primjetimo da je matrica simetrična, to jest da $MAXLENGTH(i,j)= MAXLENGTH(j,i)$.\relax }{table.caption.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.3}Infiksni algoritam}{13}{section.3.3}}
+\newlabel{sec:infiksniAlg}{{3.3}{13}{Infiksni algoritam}{section.3.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.1}Teorijska pozadina}{13}{subsection.3.3.1}}
+\citation{Landau1986}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.2}Primjer izvo\IeC {\dj }enja}{14}{subsection.3.3.2}}
+\newlabel{primjer}{{3.3.2}{14}{Primjer izvođenja}{subsection.3.3.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.4}{\ignorespaces Poklapanje izme\IeC {\dj }u uzokra $R = ACTACTTTCCGAG$ i podniza teksta $B = b_{17}\dots  b_{30} = \dots  AGCTACTTGTCCAG \dots  $\relax }}{14}{figure.caption.8}}
+\newlabel{fig:infixExample}{{3.4}{14}{Poklapanje između uzokra $R = ACTACTTTCCGAG$ i podniza teksta $B = b_{17}\dots b_{30} = \dots AGCTACTTGTCCAG \dots $\relax }{figure.caption.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.3}Detaljan opis algoritma}{15}{subsection.3.3.3}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {3}{\ignorespaces Algoritam za izra\IeC {\v c}unavanje infiksne udaljenosti dva niza s najvi\IeC {\v s}e $k$ razlika\relax }}{16}{algorithm.3}}
+\newlabel{alg:infix}{{3}{16}{Algoritam za izračunavanje infiksne udaljenosti dva niza s najviše $k$ razlika\relax }{algorithm.3}{}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {4}{\ignorespaces Nove istrukcije koje omogu\IeC {\'c}uju ubrzanje infiksnog algoritma\relax }}{17}{algorithm.4}}
+\newlabel{alg:infixNew}{{4}{17}{Nove istrukcije koje omogućuju ubrzanje infiksnog algoritma\relax }{algorithm.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.4}Vremenska slo\IeC {\v z}enost infiksnog algoritma}{19}{subsection.3.3.4}}
+\newlabel{ssec:slozenostInfix}{{3.3.4}{19}{Vremenska složenost infiksnog algoritma}{subsection.3.3.4}{}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {4}Implementacija}{20}{chapter.4}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {4.1}Prefiksni algoritam}{19}{section.4.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.1}Inicijalizacija vrijednosti}{20}{subsection.4.1.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.2}Odabir vrijednosti varijable $row$}{20}{subsection.4.1.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.3}Napredovanje po dijagonali}{21}{subsection.4.1.3}}
-\newlabel{ssec:diagonal}{{4.1.3}{21}{Napredovanje po dijagonali}{subsection.4.1.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.4}Kraj algoritma}{22}{subsection.4.1.4}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.2}Infiksni algoritam}{22}{section.4.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.1}Optimizirano napredovanje po dijagonali}{23}{subsection.4.2.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.2}Stvaranje novog niza trojki za trenutni $L_{d,e}$}{24}{subsection.4.2.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.3}Obabir novog niza $S_{i,j}$}{25}{subsection.4.2.3}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.1}Prefiksni algoritam}{20}{section.4.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.1}Inicijalizacija vrijednosti}{21}{subsection.4.1.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.2}Odabir vrijednosti varijable $row$}{21}{subsection.4.1.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.3}Napredovanje po dijagonali}{22}{subsection.4.1.3}}
+\newlabel{ssec:diagonal}{{4.1.3}{22}{Napredovanje po dijagonali}{subsection.4.1.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.4}Kraj algoritma}{23}{subsection.4.1.4}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.2}Infiksni algoritam}{23}{section.4.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.1}Optimizirano napredovanje po dijagonali}{24}{subsection.4.2.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.2}Stvaranje novog niza trojki za trenutni $L_{d,e}$}{25}{subsection.4.2.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.3}Obabir novog niza $S_{i,j}$}{26}{subsection.4.2.3}}
 \citation{edlib}
-\@writefile{toc}{\contentsline {section}{\numberline {4.3}Ugradnja u edlib}{26}{section.4.3}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.3}Ugradnja u edlib}{27}{section.4.3}}
 \citation{FASTA}
 \citation{edlib}
-\@writefile{toc}{\contentsline {chapter}{\numberline {5}Rezultati}{28}{chapter.5}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {5}Rezultati}{29}{chapter.5}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{chapter:results}{{5}{28}{Rezultati}{chapter.5}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.1}Usporedba s edlibom}{28}{section.5.1}}
-\@writefile{lot}{\contentsline {table}{\numberline {5.1}{\ignorespaces Tablica koja prikazuje rezultate testiranja implementacije prefiksnog algoritma Landau-Vishkin-Nussinov i alata edlib na uzorcima duljine 50 proteinskih baza.\relax }}{29}{table.caption.6}}
-\newlabel{tab:resultsPrefix50}{{5.1}{29}{Tablica koja prikazuje rezultate testiranja implementacije prefiksnog algoritma Landau-Vishkin-Nussinov i alata edlib na uzorcima duljine 50 proteinskih baza.\relax }{table.caption.6}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {5.2}{\ignorespaces Tablica koja prikazuje rezultate testiranja implementacije prefiksnog algoritma Landau-Vishkin-Nussinov i alata edlib na uzorcima duljine 100 proteinskih baza.\relax }}{30}{table.caption.7}}
-\newlabel{tab:resultsPrefix100}{{5.2}{30}{Tablica koja prikazuje rezultate testiranja implementacije prefiksnog algoritma Landau-Vishkin-Nussinov i alata edlib na uzorcima duljine 100 proteinskih baza.\relax }{table.caption.7}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {5.3}{\ignorespaces Tablica koja prikazuje rezultate testiranja implementacije prefiksnog algoritma Landau-Vishkin-Nussinov i alata edlib na uzorcima duljine 250 proteinskih baza.\relax }}{31}{table.caption.8}}
-\newlabel{tab:resultsPrefix250}{{5.3}{31}{Tablica koja prikazuje rezultate testiranja implementacije prefiksnog algoritma Landau-Vishkin-Nussinov i alata edlib na uzorcima duljine 250 proteinskih baza.\relax }{table.caption.8}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {5.4}{\ignorespaces Tablica koja prikazuje rezultate testiranja implementacije prefiksnog algoritma Landau-Vishkin-Nussinov i alata edlib na uzorcima duljine 500 proteinskih baza. Podebljano su ozna\IeC {\v c}eni redci u kojima je algoritam Landau-Vishkin-Nussinov sporiji od edliba.\relax }}{32}{table.caption.9}}
-\newlabel{tab:resultsPrefix500}{{5.4}{32}{Tablica koja prikazuje rezultate testiranja implementacije prefiksnog algoritma Landau-Vishkin-Nussinov i alata edlib na uzorcima duljine 500 proteinskih baza. Podebljano su označeni redci u kojima je algoritam Landau-Vishkin-Nussinov sporiji od edliba.\relax }{table.caption.9}{}}
+\newlabel{chapter:results}{{5}{29}{Rezultati}{chapter.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.1}Usporedba s edlibom}{29}{section.5.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.1}Prefiksni algoritam}{29}{subsection.5.1.1}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.1}{\ignorespaces Tablica koja prikazuje rezultate testiranja implementacije prefiksnog algoritma Landau-Vishkin-Nussinov i alata edlib na uzorcima duljine 50 proteinskih baza.\relax }}{30}{table.caption.9}}
+\newlabel{tab:resultsPrefix50}{{5.1}{30}{Tablica koja prikazuje rezultate testiranja implementacije prefiksnog algoritma Landau-Vishkin-Nussinov i alata edlib na uzorcima duljine 50 proteinskih baza.\relax }{table.caption.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.2}Infiksni algoritam}{30}{subsection.5.1.2}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.2}{\ignorespaces Tablica koja prikazuje rezultate testiranja implementacije prefiksnog algoritma Landau-Vishkin-Nussinov i alata edlib na uzorcima duljine 100 proteinskih baza.\relax }}{31}{table.caption.10}}
+\newlabel{tab:resultsPrefix100}{{5.2}{31}{Tablica koja prikazuje rezultate testiranja implementacije prefiksnog algoritma Landau-Vishkin-Nussinov i alata edlib na uzorcima duljine 100 proteinskih baza.\relax }{table.caption.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.3}{\ignorespaces Tablica koja prikazuje rezultate testiranja implementacije prefiksnog algoritma Landau-Vishkin-Nussinov i alata edlib na uzorcima duljine 250 proteinskih baza.\relax }}{32}{table.caption.11}}
+\newlabel{tab:resultsPrefix250}{{5.3}{32}{Tablica koja prikazuje rezultate testiranja implementacije prefiksnog algoritma Landau-Vishkin-Nussinov i alata edlib na uzorcima duljine 250 proteinskih baza.\relax }{table.caption.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.4}{\ignorespaces Tablica koja prikazuje rezultate testiranja implementacije prefiksnog algoritma Landau-Vishkin-Nussinov i alata edlib na uzorcima duljine 500 proteinskih baza. Podebljano su ozna\IeC {\v c}eni redci u kojima je algoritam Landau-Vishkin-Nussinov sporiji od edliba.\relax }}{33}{table.caption.12}}
+\newlabel{tab:resultsPrefix500}{{5.4}{33}{Tablica koja prikazuje rezultate testiranja implementacije prefiksnog algoritma Landau-Vishkin-Nussinov i alata edlib na uzorcima duljine 500 proteinskih baza. Podebljano su označeni redci u kojima je algoritam Landau-Vishkin-Nussinov sporiji od edliba.\relax }{table.caption.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.5}{\ignorespaces Tablica koja prikazuje rezultate testiranja implementacije infiksnog algoritma Landau-Vishkin-Nussinov i alata edlib na uzorcima duljine 50 i 100 proteinskih baza.\relax }}{35}{table.caption.13}}
+\newlabel{tab:resultsInfix50}{{5.5}{35}{Tablica koja prikazuje rezultate testiranja implementacije infiksnog algoritma Landau-Vishkin-Nussinov i alata edlib na uzorcima duljine 50 i 100 proteinskih baza.\relax }{table.caption.13}{}}
 \citation{Landau1986}
 \citation{edlib}
-\@writefile{toc}{\contentsline {chapter}{\numberline {6}Zaklju\IeC {\v c}ak}{33}{chapter.6}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {6}Zaklju\IeC {\v c}ak}{36}{chapter.6}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \bibdata{literatura}
@@ -122,5 +134,5 @@
 \bibcite{Smith1981}{{5}{1981}{{Smith i Waterman}}{{}}}
 \bibcite{Ukkonen1985}{{6}{1985}{{Ukkonen}}{{}}}
 \bibcite{edlib}{{7}{2017}{{\IeC {\v S}o\IeC {\v s}i\IeC {\'c} i \IeC {\v S}iki\IeC {\'c}}}{{}}}
-\@writefile{toc}{\contentsline {chapter}{Literatura}{35}{chapter*.10}}
+\@writefile{toc}{\contentsline {chapter}{Literatura}{38}{chapter*.14}}
 \bibstyle{fer}
